@@ -1,0 +1,22 @@
+{
+  "canvas": [
+    1680,
+    1370
+  ],
+  "png": [
+    3360,
+    2740
+  ],
+  "elements": {
+    "rectangle": 21,
+    "arrow": 15,
+    "text": 69
+  },
+  "all_text_font_family": 5,
+  "scope": "Logical architecture; solid baseline plus dashed dual-lane extension",
+  "files": [
+    "lpu4tt_architecture.png",
+    "lpu4tt_architecture.svg",
+    "lpu4tt_architecture.excalidraw"
+  ]
+}

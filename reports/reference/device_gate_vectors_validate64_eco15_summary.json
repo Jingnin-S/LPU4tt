@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "capacity": 64,
+  "lanes": 1,
+  "cases": 67,
+  "cycles": 137327,
+  "all_numeric_checks_passed": true,
+  "netlist_sha256": "b4b6ac66ad8762bda36dd5ca712a4e42165ca8af84f2e28f22c395c9d03c70b0",
+  "bench_sha256": "b808942299bb68c1538062b5416ba90ea9d0b03976e8dc46250fafc5d71253ff",
+  "vectors_sha256": "b6be4820781ea26a8bee95e9931439f44269a474eccb188a5200e85edffe6f40",
+  "model_report_sha256": "b9e6d0a205fc1a0a5a2be8d6a6cc8c0ec0060437e416df4d747bc7ca4efbc473",
+  "source_sha256": {
+    "physical/pdk/sky130A/libs.ref/sky130_fd_sc_hd/verilog/primitives.v": "7d4b1441d06b0f2b9662befa675a0484d77149e04eb42a5f1fa2d4cfded7b2ce",
+    "physical/pdk/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v": "12d5d6448ccf265c544d88402d5c10ab6de9bee8b8cde48eee1f31ea8c3c3e45",
+    "physical/work/lpu_validate64_eco15_100m_ss/runs/wokwi/final/pnl/tt_um_tinylpu_v1.pnl.v": "b4b6ac66ad8762bda36dd5ca712a4e42165ca8af84f2e28f22c395c9d03c70b0",
+    "rtl/tb_tinylpu_gate_vectors.sv": "b808942299bb68c1538062b5416ba90ea9d0b03976e8dc46250fafc5d71253ff"
+  },
+  "scope": "Full routed functional/cycle vectors with UNIT_DELAY=1, clock100ns/observe20ns; physical timing is checked separately by extracted STA"
+}

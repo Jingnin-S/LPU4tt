@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "id": "ihp",
+  "template_repository": "https://github.com/TinyTapeout/ttihp-verilog-template",
+  "template_commit": "4b1204ab387b5ab94db1d57067051d8d89a2f83c",
+  "source_urls": {
+    "workflow": "https://raw.githubusercontent.com/TinyTapeout/ttihp-verilog-template/4b1204ab387b5ab94db1d57067051d8d89a2f83c/.github/workflows/gds.yaml",
+    "config": "https://raw.githubusercontent.com/TinyTapeout/ttihp-verilog-template/4b1204ab387b5ab94db1d57067051d8d89a2f83c/src/config.json",
+    "info": "https://raw.githubusercontent.com/TinyTapeout/ttihp-verilog-template/4b1204ab387b5ab94db1d57067051d8d89a2f83c/info.yaml",
+    "tile": "https://raw.githubusercontent.com/TinyTapeout/tt-support-tools/02abf73b5f5dcd2eabdda92b074bf00c4446d886/tech/ihp-sg13cmos5l/tile_sizes.yaml",
+    "action": "https://raw.githubusercontent.com/TinyTapeout/tt-gds-action/16c727e73597913beca6ee6057db05ef44410205/action.yml"
+  },
+  "action_ref": "ttihp27a",
+  "action_repository": "https://github.com/TinyTapeout/tt-gds-action",
+  "action_commit": "16c727e73597913beca6ee6057db05ef44410205",
+  "pdk": "ihp-sg13cmos5l",
+  "librelane_version": "3.1.0.dev4",
+  "clock_period_ns": 20,
+  "density_pct": 60,
+  "tile_width_um": 202.08,
+  "tile_height_um": 154.98,
+  "tile_die_area_um2": 31318.3584,
+  "tile_configuration": "1x1",
+  "tile_die_area_bounds_um": [
+    0.0,
+    0.0,
+    202.08,
+    154.98
+  ],
+  "support_tools_repository": "https://github.com/TinyTapeout/tt-support-tools",
+  "support_tools_commit": "02abf73b5f5dcd2eabdda92b074bf00c4446d886",
+  "physical_performance_validated": false,
+  "source_snapshot_utc": "2026-10-29T05:17:50.510329Z",
+  "assumptions": [
+    "All templates use the same Tiny-LPU core and host cycle models; only technology/template metadata differ.",
+    "Cycle-to-time conversion uses a nominal clock constraint, not a validated silicon Fmax.",
+    "Selecting a PDK does not automatically change modeled cycle counts or the nominal clock sweep.",
+    "The tile DIE_AREA is the complete boundary, not the area available exclusively for standard cells.",
+    "A template action target does not establish shuttle availability, price, or a submission deadline."
+  ],
+  "analysis_template": "ihp"
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "core_target_mhz": 100,
+  "stretch_targets_mhz": [150, 200],
+  "core_frequency_sweep_mhz": [50, 100, 150, 200],
+  "host_payload_bandwidth_sweep_MBps": [1, 5, 25],
+  "scratchpad_capacity_sweep_bytes": [16, 32, 64, 128, 256],
+  "start_command_bytes": 1,
+  "orders": ["weight_stationary", "latency_first"],
+  "physical_performance_validated": false,
+  "architectures": [
+    {"id": "v1_serial", "lanes": 1, "depth": 2, "row_drain": true, "buffers": 1},
+    {"id": "stream1_d2", "lanes": 1, "depth": 2, "row_drain": false, "buffers": 1},
+    {"id": "stream1_d3", "lanes": 1, "depth": 3, "row_drain": false, "buffers": 1},
+    {"id": "stream1_ping", "lanes": 1, "depth": 3, "row_drain": false, "buffers": 2},
+    {"id": "stream2_d3", "lanes": 2, "depth": 3, "row_drain": false, "buffers": 1},
+    {"id": "stream2_ping", "lanes": 2, "depth": 3, "row_drain": false, "buffers": 2},
+    {"id": "stream4_d3", "lanes": 4, "depth": 3, "row_drain": false, "buffers": 1},
+    {"id": "stream4_ping", "lanes": 4, "depth": 3, "row_drain": false, "buffers": 2},
+    {"id": "stream2_d4_ping", "lanes": 2, "depth": 4, "row_drain": false, "buffers": 2}
+  ],
+  "workloads": [
+    {"id": "dot4", "rows": 1, "k": 4, "frames": 1, "purpose": "tiny kernel and lane underutilization"},
+    {"id": "gemv2x4", "rows": 2, "k": 4, "frames": 1, "purpose": "v1 reference and small matrix"},
+    {"id": "fir8_b16", "rows": 1, "k": 8, "frames": 16, "purpose": "one-output repeated filter; independent windows"},
+    {"id": "fc4x16_b1", "rows": 4, "k": 16, "frames": 1, "purpose": "single-sample latency"},
+    {"id": "fc4x16_b16", "rows": 4, "k": 16, "frames": 16, "purpose": "batched weight reuse"},
+    {"id": "fc8x32_b16", "rows": 8, "k": 32, "frames": 16, "purpose": "storage tiling and throughput stress"}
+  ]
+}

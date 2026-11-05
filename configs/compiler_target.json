@@ -1,0 +1,11 @@
+{
+  "target_id": "tinylpu-experimental-p2-d3-64b",
+  "lanes": 2,
+  "depth": 3,
+  "a_ports": 1,
+  "b_ports": 2,
+  "scratchpad_bytes": 64,
+  "buffers": 2,
+  "max_k": 64,
+  "max_rows": 16
+}

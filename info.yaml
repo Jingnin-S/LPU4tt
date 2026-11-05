@@ -1,0 +1,48 @@
+# Tiny Tapeout project information
+project:
+  title:        "Tiny LPU v1"
+  author:       "Tiny LPU Research"
+  discord:      ""
+  description:  "64-byte, 1-lane streaming INT4/ACC32 LPU physical-flow candidate."
+  language:     "Verilog"
+  clock_hz:     100000000
+  tiles:        "4x2"
+  top_module:   "tt_um_tinylpu_v1"
+  source_files:
+    - "tinylpu_device_memory.sv"
+    - "tinylpu_device.sv"
+    - "tt_um_tinylpu_v1.sv"
+
+# Pin names describe the byte-stream host interface in the wrapper.
+pinout:
+  # Inputs
+  ui[0]: "RX data bit 0"
+  ui[1]: "RX data bit 1"
+  ui[2]: "RX data bit 2"
+  ui[3]: "RX data bit 3"
+  ui[4]: "RX data bit 4"
+  ui[5]: "RX data bit 5"
+  ui[6]: "RX data bit 6"
+  ui[7]: "RX data bit 7"
+
+  # Outputs
+  uo[0]: "TX data bit 0"
+  uo[1]: "TX data bit 1"
+  uo[2]: "TX data bit 2"
+  uo[3]: "TX data bit 3"
+  uo[4]: "TX data bit 4"
+  uo[5]: "TX data bit 5"
+  uo[6]: "TX data bit 6"
+  uo[7]: "TX data bit 7"
+
+  # Bidirectional pins
+  uio[0]: "RX valid"
+  uio[1]: "TX ready"
+  uio[2]: "Reserved"
+  uio[3]: "Reserved"
+  uio[4]: "Reserved"
+  uio[5]: "Reserved"
+  uio[6]: "Reserved"
+  uio[7]: "Start"
+
+yaml_version: 6

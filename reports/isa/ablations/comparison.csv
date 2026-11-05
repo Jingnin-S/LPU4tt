@@ -1,0 +1,6 @@
+case,command_count,command_bytes,mvm_count,macs,core_cycles,scratch_cycles,decode_cycles,load_bytes,store_bytes,device_cycles,time_us
+fused_rows_resident,26,136,8,1024,576,320,26,128,256,922,61.22
+reload_weights,33,164,8,1024,576,544,33,576,256,1153,111.13
+unrolled_row_groups_same_data,50,328,32,1024,576,320,50,128,256,946,80.66
+device_accumulate,417,2180,128,16384,8448,7168,417,12288,256,16033,1632.73
+host_partial_sum_same_chunks,513,2564,128,16384,8448,7168,513,12288,1024,16129,1748.8899999999999

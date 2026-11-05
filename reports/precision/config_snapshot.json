@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "seed": 20261031,
+  "batch_frames": 16,
+  "calibration_frames": 32,
+  "cases": [
+    {
+      "name": "linear_16x8",
+      "layers": [
+        [
+          8,
+          16
+        ]
+      ]
+    },
+    {
+      "name": "linear_tail_16x7",
+      "layers": [
+        [
+          7,
+          16
+        ]
+      ]
+    },
+    {
+      "name": "linear_odd_k17x3",
+      "layers": [
+        [
+          3,
+          17
+        ]
+      ]
+    },
+    {
+      "name": "linear_64x8",
+      "layers": [
+        [
+          8,
+          64
+        ]
+      ]
+    },
+    {
+      "name": "linear_256x8_numeric_only",
+      "layers": [
+        [
+          8,
+          256
+        ]
+      ]
+    },
+    {
+      "name": "linear_1024x4_numeric_only",
+      "layers": [
+        [
+          4,
+          1024
+        ]
+      ]
+    },
+    {
+      "name": "mlp_16x8x4_relu",
+      "layers": [
+        [
+          8,
+          16
+        ],
+        [
+          4,
+          8
+        ]
+      ]
+    }
+  ],
+  "distributions": [
+    "normal",
+    "small",
+    "large",
+    "wide_dynamic",
+    "outlier_shift",
+    "cancellation",
+    "zero"
+  ],
+  "activation_quantization": [
+    "dynamic_absmax",
+    "calibrated_static"
+  ],
+  "weight_quantization": "per_output_channel_absmax_fp32_scale_zero_point_0_RNE",
+  "reference": "PyTorch FP32 model; ordered FP32 non-FMA and FP64 diagnostics separately recorded",
+  "floating_contract": "RNE input conversion, preserve subnormals, sequential FP32 product then FP32 add, explicit output conversion",
+  "data_budget": {
+    "lanes": 2,
+    "buffers": 2
+  },
+  "integer_plan_validation_target": {
+    "target_id": "precision-legacy-int4-p2-d3-256b",
+    "lanes": 2,
+    "depth": 3,
+    "a_ports": 1,
+    "b_ports": 2,
+    "scratchpad_bytes": 256,
+    "buffers": 2,
+    "max_k": 64,
+    "max_rows": 16
+  }
+}

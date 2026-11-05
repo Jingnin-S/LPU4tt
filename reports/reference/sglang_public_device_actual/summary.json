@@ -1,0 +1,741 @@
+{
+  "sglang_version": "0.5.22",
+  "engine": "device",
+  "profile": {
+    "capacity": 64,
+    "lanes": 1,
+    "accumulator_bits": 32
+  },
+  "class": "sglang.srt.layers.linear.ReplicatedLinear",
+  "normal_constructor": true,
+  "actual_module_import": true,
+  "shape_cases": 6,
+  "full_srt_service": false,
+  "all_passed": true,
+  "cases": [
+    {
+      "frames": 1,
+      "m": 3,
+      "k": 17,
+      "offload_calls": 2,
+      "nrmse_vs_fp32": 0.11951515823602676,
+      "numeric_oracle": "PASS",
+      "bias_contract": "PASS",
+      "debug": {
+        "placement": "complete device pin/cycle simulator",
+        "runtime": {
+          "state": 13,
+          "cycles": 187,
+          "commands": 5,
+          "macs": 51,
+          "load_bytes": 39,
+          "store_bytes": 12,
+          "group": 2,
+          "req_k": 16,
+          "issued": 0,
+          "acc0": 7,
+          "acc1": 0,
+          "command_count": 5,
+          "device_cycles": 186,
+          "command_bytes": 24,
+          "stores_hex": "c9ffffffebffffff07000000",
+          "cycle_breakdown": {
+            "start": 1,
+            "header": 24,
+            "check": 10,
+            "mvm_validate": 1,
+            "load": 39,
+            "store": 36,
+            "group_init": 3,
+            "seed": 0,
+            "core_issue": 51,
+            "core_drain": 9,
+            "writeback": 12
+          },
+          "engine": "complete device pin/cycle C++ model"
+        },
+        "resources": {
+          "command_count": 5,
+          "command_bytes": 24,
+          "mvm_count": 1,
+          "macs": 51,
+          "load_bytes": 39,
+          "store_bytes": 12,
+          "operand_read_bytes": 102,
+          "gather_cycles": 51,
+          "conflict_cycles": 0,
+          "memory_latency_cycles": 3,
+          "pipeline_drain_cycles": 6,
+          "core_cycles": 60,
+          "scratch_cycles": 63,
+          "decode_cycles": 5,
+          "device_cycles": 128,
+          "peak_scratch_end": 56
+        },
+        "weight_sha256": "e68bf9ef799db7d81160cd57791e42795843e6e4c75f2ec17a5fa3f551f6ca9e",
+        "activation_scales": [
+          0.32596343755722046
+        ],
+        "weight_scales": [
+          0.29107052087783813,
+          0.21622005105018616,
+          0.2664933502674103
+        ],
+        "raw_integer_output": [
+          [
+            -55,
+            -21,
+            7
+          ]
+        ],
+        "host_steps": "dynamic symmetric RNE PTQ; INT4; dequant; optional bias",
+        "wall_ns": 12742712,
+        "accuracy": "approximate versus FP32; exact versus declared quantized arithmetic"
+      }
+    },
+    {
+      "frames": 1,
+      "m": 8,
+      "k": 16,
+      "offload_calls": 2,
+      "nrmse_vs_fp32": 0.14955520629882812,
+      "numeric_oracle": "PASS",
+      "bias_contract": "PASS",
+      "debug": {
+        "placement": "complete device pin/cycle simulator",
+        "runtime": {
+          "state": 13,
+          "cycles": 459,
+          "commands": 11,
+          "macs": 128,
+          "load_bytes": 88,
+          "store_bytes": 32,
+          "group": 1,
+          "req_k": 15,
+          "issued": 0,
+          "acc0": -42,
+          "acc1": 0,
+          "command_count": 11,
+          "device_cycles": 458,
+          "command_bytes": 56,
+          "stores_hex": "140000001400000035000000e4ffffffe4ffffff070000002b000000d6ffffff",
+          "cycle_breakdown": {
+            "start": 1,
+            "header": 56,
+            "check": 22,
+            "mvm_validate": 3,
+            "load": 88,
+            "store": 96,
+            "group_init": 8,
+            "seed": 0,
+            "core_issue": 128,
+            "core_drain": 24,
+            "writeback": 32
+          },
+          "engine": "complete device pin/cycle C++ model"
+        },
+        "resources": {
+          "command_count": 11,
+          "command_bytes": 56,
+          "mvm_count": 3,
+          "macs": 128,
+          "load_bytes": 88,
+          "store_bytes": 32,
+          "operand_read_bytes": 256,
+          "gather_cycles": 128,
+          "conflict_cycles": 0,
+          "memory_latency_cycles": 8,
+          "pipeline_drain_cycles": 16,
+          "core_cycles": 152,
+          "scratch_cycles": 152,
+          "decode_cycles": 11,
+          "device_cycles": 315,
+          "peak_scratch_end": 56
+        },
+        "weight_sha256": "5da25ff905d594498e9e7774efb591b3c3930b5f11fccb99494208b2d8d500a3",
+        "activation_scales": [
+          0.320964515209198
+        ],
+        "weight_scales": [
+          0.29279258847236633,
+          0.3013245165348053,
+          0.3303440511226654,
+          0.2576455771923065,
+          0.32844042778015137,
+          0.19024424254894257,
+          0.4235667288303375,
+          0.29554876685142517
+        ],
+        "raw_integer_output": [
+          [
+            20,
+            20,
+            53,
+            -28,
+            -28,
+            7,
+            43,
+            -42
+          ]
+        ],
+        "host_steps": "dynamic symmetric RNE PTQ; INT4; dequant; optional bias",
+        "wall_ns": 21189217,
+        "accuracy": "approximate versus FP32; exact versus declared quantized arithmetic"
+      }
+    },
+    {
+      "frames": 1,
+      "m": 8,
+      "k": 64,
+      "offload_calls": 2,
+      "nrmse_vs_fp32": 0.10549524426460266,
+      "numeric_oracle": "PASS",
+      "bias_contract": "PASS",
+      "debug": {
+        "placement": "complete device pin/cycle simulator",
+        "runtime": {
+          "state": 13,
+          "cycles": 1432,
+          "commands": 29,
+          "macs": 512,
+          "load_bytes": 416,
+          "store_bytes": 32,
+          "group": 1,
+          "req_k": 31,
+          "issued": 0,
+          "acc0": 81,
+          "acc1": 0,
+          "command_count": 29,
+          "device_cycles": 1431,
+          "command_bytes": 148,
+          "stores_hex": "15000000ecffffff0f0000005800000027000000acffffffc0ffffff51000000",
+          "cycle_breakdown": {
+            "start": 1,
+            "header": 148,
+            "check": 58,
+            "mvm_validate": 8,
+            "load": 416,
+            "store": 96,
+            "group_init": 16,
+            "seed": 64,
+            "core_issue": 512,
+            "core_drain": 48,
+            "writeback": 64
+          },
+          "engine": "complete device pin/cycle C++ model"
+        },
+        "resources": {
+          "command_count": 29,
+          "command_bytes": 148,
+          "mvm_count": 8,
+          "macs": 512,
+          "load_bytes": 416,
+          "store_bytes": 32,
+          "operand_read_bytes": 1024,
+          "gather_cycles": 512,
+          "conflict_cycles": 0,
+          "memory_latency_cycles": 16,
+          "pipeline_drain_cycles": 32,
+          "core_cycles": 560,
+          "scratch_cycles": 544,
+          "decode_cycles": 29,
+          "device_cycles": 1133,
+          "peak_scratch_end": 64
+        },
+        "weight_sha256": "caa69839a91d575dc779781f32976b559f16f394eabf7eec1ad93a2c55bd9ad7",
+        "activation_scales": [
+          0.38205552101135254
+        ],
+        "weight_scales": [
+          0.3714502155780792,
+          0.43211716413497925,
+          0.35032519698143005,
+          0.3989850878715515,
+          0.3291810154914856,
+          0.33867311477661133,
+          0.38776373863220215,
+          0.3333929479122162
+        ],
+        "raw_integer_output": [
+          [
+            21,
+            -20,
+            15,
+            88,
+            39,
+            -84,
+            -64,
+            81
+          ]
+        ],
+        "host_steps": "dynamic symmetric RNE PTQ; INT4; dequant; optional bias",
+        "wall_ns": 77683073,
+        "accuracy": "approximate versus FP32; exact versus declared quantized arithmetic"
+      }
+    },
+    {
+      "frames": 8,
+      "m": 3,
+      "k": 17,
+      "offload_calls": 2,
+      "nrmse_vs_fp32": 0.1452583223581314,
+      "numeric_oracle": "PASS",
+      "bias_contract": "PASS",
+      "debug": {
+        "placement": "complete device pin/cycle simulator",
+        "runtime": {
+          "state": 13,
+          "cycles": 1188,
+          "commands": 26,
+          "macs": 408,
+          "load_bytes": 102,
+          "store_bytes": 96,
+          "group": 2,
+          "req_k": 16,
+          "issued": 0,
+          "acc0": -37,
+          "acc1": 0,
+          "command_count": 26,
+          "device_cycles": 1187,
+          "command_bytes": 136,
+          "stores_hex": "f7ffffff0e0000000b000000cfffffff2200000001000000060000003f000000aeffffffdfffffff11000000d8ffffffe9ffffffe6fffffffcffffff2e000000090000003900000011000000f9ffffffb9fffffff4ffffff28000000dbffffff",
+          "cycle_breakdown": {
+            "start": 1,
+            "header": 136,
+            "check": 52,
+            "mvm_validate": 8,
+            "load": 102,
+            "store": 288,
+            "group_init": 24,
+            "seed": 0,
+            "core_issue": 408,
+            "core_drain": 72,
+            "writeback": 96
+          },
+          "engine": "complete device pin/cycle C++ model"
+        },
+        "resources": {
+          "command_count": 26,
+          "command_bytes": 136,
+          "mvm_count": 8,
+          "macs": 408,
+          "load_bytes": 102,
+          "store_bytes": 96,
+          "operand_read_bytes": 816,
+          "gather_cycles": 408,
+          "conflict_cycles": 0,
+          "memory_latency_cycles": 24,
+          "pipeline_drain_cycles": 48,
+          "core_cycles": 480,
+          "scratch_cycles": 294,
+          "decode_cycles": 26,
+          "device_cycles": 800,
+          "peak_scratch_end": 56
+        },
+        "weight_sha256": "0a6d4ce5e5655ce9784666a9476f463cf79fd7124727b2df7032362de7467984",
+        "activation_scales": [
+          0.44069981575012207,
+          0.3703974783420563,
+          0.25075215101242065,
+          0.22488202154636383,
+          0.36120346188545227,
+          0.2804328203201294,
+          0.22760330140590668,
+          0.41403263807296753
+        ],
+        "weight_scales": [
+          0.3229479491710663,
+          0.3214862644672394,
+          0.371697336435318
+        ],
+        "raw_integer_output": [
+          [
+            -9,
+            14,
+            11
+          ],
+          [
+            -49,
+            34,
+            1
+          ],
+          [
+            6,
+            63,
+            -82
+          ],
+          [
+            -33,
+            17,
+            -40
+          ],
+          [
+            -23,
+            -26,
+            -4
+          ],
+          [
+            46,
+            9,
+            57
+          ],
+          [
+            17,
+            -7,
+            -71
+          ],
+          [
+            -12,
+            40,
+            -37
+          ]
+        ],
+        "host_steps": "dynamic symmetric RNE PTQ; INT4; dequant; optional bias",
+        "wall_ns": 49449653,
+        "accuracy": "approximate versus FP32; exact versus declared quantized arithmetic"
+      }
+    },
+    {
+      "frames": 8,
+      "m": 8,
+      "k": 16,
+      "offload_calls": 2,
+      "nrmse_vs_fp32": 0.1296652853488922,
+      "numeric_oracle": "PASS",
+      "bias_contract": "PASS",
+      "debug": {
+        "placement": "complete device pin/cycle simulator",
+        "runtime": {
+          "state": 13,
+          "cycles": 3154,
+          "commands": 76,
+          "macs": 1024,
+          "load_bytes": 272,
+          "store_bytes": 256,
+          "group": 1,
+          "req_k": 15,
+          "issued": 0,
+          "acc0": 32,
+          "acc1": 0,
+          "command_count": 76,
+          "device_cycles": 3153,
+          "command_bytes": 400,
+          "stores_hex": "4b0000000e0000000e0000001e0000000000000016000000200000000c000000feffffffc1ffffff290000000400000001000000150000001b0000006d000000dcffffff0e000000460000005d000000f6ffffff02000000180000001b000000b7ffffffb3ffffffeaffffffc0fffffff4ffffff21000000e7ffffff46000000dafffffff2ffffff47000000020000000300000012000000fafffffff2ffffff1100000030000000040000001600000088ffffffe5fffffffdffffffc7ffffff3400000036000000130000000b0000000800000011000000ccffffffe0ffffffecffffffe0ffffff17000000caffffffbcffffff18000000f1ffffff20000000",
+          "cycle_breakdown": {
+            "start": 1,
+            "header": 400,
+            "check": 152,
+            "mvm_validate": 24,
+            "load": 272,
+            "store": 768,
+            "group_init": 64,
+            "seed": 0,
+            "core_issue": 1024,
+            "core_drain": 192,
+            "writeback": 256
+          },
+          "engine": "complete device pin/cycle C++ model"
+        },
+        "resources": {
+          "command_count": 76,
+          "command_bytes": 400,
+          "mvm_count": 24,
+          "macs": 1024,
+          "load_bytes": 272,
+          "store_bytes": 256,
+          "operand_read_bytes": 2048,
+          "gather_cycles": 1024,
+          "conflict_cycles": 0,
+          "memory_latency_cycles": 64,
+          "pipeline_drain_cycles": 128,
+          "core_cycles": 1216,
+          "scratch_cycles": 784,
+          "decode_cycles": 76,
+          "device_cycles": 2076,
+          "peak_scratch_end": 56
+        },
+        "weight_sha256": "598cee7eef498c116cfb9b65597e6c88f2ce6b900463eae74df4a3561b3969e7",
+        "activation_scales": [
+          0.3053206503391266,
+          0.22107191383838654,
+          0.3115081191062927,
+          0.2391698807477951,
+          0.28939634561538696,
+          0.22425420582294464,
+          0.30448487401008606,
+          0.3096972405910492
+        ],
+        "weight_scales": [
+          0.22967243194580078,
+          0.2332705408334732,
+          0.2937163710594177,
+          0.35239940881729126,
+          0.33235669136047363,
+          0.3351224958896637,
+          0.3893662095069885,
+          0.45401638746261597
+        ],
+        "raw_integer_output": [
+          [
+            75,
+            14,
+            14,
+            -73,
+            -77,
+            -22,
+            52,
+            54
+          ],
+          [
+            30,
+            0,
+            22,
+            -64,
+            -12,
+            33,
+            19,
+            11
+          ],
+          [
+            32,
+            12,
+            -2,
+            -25,
+            70,
+            -38,
+            8,
+            17
+          ],
+          [
+            -63,
+            41,
+            4,
+            -14,
+            71,
+            2,
+            -52,
+            -32
+          ],
+          [
+            1,
+            21,
+            27,
+            3,
+            18,
+            -6,
+            -20,
+            -32
+          ],
+          [
+            109,
+            -36,
+            14,
+            -14,
+            17,
+            48,
+            23,
+            -54
+          ],
+          [
+            70,
+            93,
+            -10,
+            4,
+            22,
+            -120,
+            -68,
+            24
+          ],
+          [
+            2,
+            24,
+            27,
+            -27,
+            -3,
+            -57,
+            -15,
+            32
+          ]
+        ],
+        "host_steps": "dynamic symmetric RNE PTQ; INT4; dequant; optional bias",
+        "wall_ns": 121128753,
+        "accuracy": "approximate versus FP32; exact versus declared quantized arithmetic"
+      }
+    },
+    {
+      "frames": 8,
+      "m": 8,
+      "k": 64,
+      "offload_calls": 2,
+      "nrmse_vs_fp32": 0.14983493089675903,
+      "numeric_oracle": "PASS",
+      "bias_contract": "PASS",
+      "debug": {
+        "placement": "complete device pin/cycle simulator",
+        "runtime": {
+          "state": 13,
+          "cycles": 11400,
+          "commands": 225,
+          "macs": 4096,
+          "load_bytes": 3328,
+          "store_bytes": 256,
+          "group": 1,
+          "req_k": 31,
+          "issued": 0,
+          "acc0": 27,
+          "acc1": 0,
+          "command_count": 225,
+          "device_cycles": 11399,
+          "command_bytes": 1156,
+          "stores_hex": "f5ffffff0a0000002d00000022000000fcffffff0700000024000000e1ffffff38000000b6ffffff220000009fffffff0c000000f3ffffff41000000f2ffffff62000000eaffffff9bffffff2a0000004b0000003d000000e7ffffff0a0000003a000000f6ffffffe3ffffff68000000410000002b000000fdffffffc8ffffff25000000daffffffeeffffffd5ffffff19000000d8ffffff16000000070000004600000029000000a6fffffff8ffffff1d00000038ffffffb8ffffff7f000000e9ffffff64000000e2ffffffa6ffffff5500000099fffffff9ffffff16000000010000001700000030000000e4fffffffdffffffc9ffffff85ffffff1b000000",
+          "cycle_breakdown": {
+            "start": 1,
+            "header": 1156,
+            "check": 450,
+            "mvm_validate": 64,
+            "load": 3328,
+            "store": 768,
+            "group_init": 128,
+            "seed": 512,
+            "core_issue": 4096,
+            "core_drain": 384,
+            "writeback": 512
+          },
+          "engine": "complete device pin/cycle C++ model"
+        },
+        "resources": {
+          "command_count": 225,
+          "command_bytes": 1156,
+          "mvm_count": 64,
+          "macs": 4096,
+          "load_bytes": 3328,
+          "store_bytes": 256,
+          "operand_read_bytes": 8192,
+          "gather_cycles": 4096,
+          "conflict_cycles": 0,
+          "memory_latency_cycles": 128,
+          "pipeline_drain_cycles": 256,
+          "core_cycles": 4480,
+          "scratch_cycles": 4352,
+          "decode_cycles": 225,
+          "device_cycles": 9057,
+          "peak_scratch_end": 64
+        },
+        "weight_sha256": "40a7bf122d39f1e9b6bb834299bfd773cdab8a6e3bcb76bf1e2de62647d0d66c",
+        "activation_scales": [
+          0.4740883409976959,
+          0.30923834443092346,
+          0.2929317057132721,
+          0.35698172450065613,
+          0.4164769649505615,
+          0.37605762481689453,
+          0.41473624110221863,
+          0.3747701644897461
+        ],
+        "weight_scales": [
+          0.30980604887008667,
+          0.3510887026786804,
+          0.3598654568195343,
+          0.2651773691177368,
+          0.501345694065094,
+          0.3389229476451874,
+          0.3527993857860565,
+          0.4795992374420166
+        ],
+        "raw_integer_output": [
+          [
+            -11,
+            10,
+            45,
+            34,
+            -4,
+            7,
+            36,
+            -31
+          ],
+          [
+            56,
+            -74,
+            34,
+            -97,
+            12,
+            -13,
+            65,
+            -14
+          ],
+          [
+            98,
+            -22,
+            -101,
+            42,
+            75,
+            61,
+            -25,
+            10
+          ],
+          [
+            58,
+            -10,
+            -29,
+            104,
+            65,
+            43,
+            -3,
+            -56
+          ],
+          [
+            37,
+            -38,
+            -18,
+            -43,
+            25,
+            -40,
+            22,
+            7
+          ],
+          [
+            70,
+            41,
+            -90,
+            -8,
+            29,
+            -200,
+            -72,
+            127
+          ],
+          [
+            -23,
+            100,
+            -30,
+            -90,
+            85,
+            -103,
+            -7,
+            22
+          ],
+          [
+            1,
+            23,
+            48,
+            -28,
+            -3,
+            -55,
+            -123,
+            27
+          ]
+        ],
+        "host_steps": "dynamic symmetric RNE PTQ; INT4; dequant; optional bias",
+        "wall_ns": 478424243,
+        "accuracy": "approximate versus FP32; exact versus declared quantized arithmetic"
+      }
+    }
+  ],
+  "linear_source_sha256": "3ce31df0a8aab09ed8afa0ada8c0ce30ca207a748c02c3073d7f53648b9b7c3c",
+  "post_load_hook_executed": true,
+  "runtime_versions": {
+    "torch": "2.14.1+cpu",
+    "numpy": "2.4.6",
+    "transformers": "5.19.0",
+    "apache-tvm-ffi": "0.1.11"
+  }
+}

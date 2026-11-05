@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "description": "M3 batch linear scheduling comparison. Capacity/lanes are model parameters, not physical area or FMax measurements.",
+  "models": [
+    {"name": "linear_16x8", "rows": 8, "k": 16, "phase": 1},
+    {"name": "linear_tail_16x7", "rows": 7, "k": 16, "phase": 1},
+    {"name": "linear_odd_k17x3", "rows": 3, "k": 17, "phase": 1},
+    {"name": "linear_16x16", "rows": 16, "k": 16, "phase": 2},
+    {"name": "linear_64x8", "rows": 8, "k": 64, "phase": 5}
+  ],
+  "architecture_matrix": {
+    "lanes": [1, 2, 4],
+    "depth": [2, 3, 4],
+    "capacity_bytes": [16, 32, 64, 96, 128, 192, 256],
+    "buffers": [1, 2],
+    "frames": [1, 8, 32],
+    "orders": ["latency_first", "weight_stationary"],
+    "weight_policies": ["resident", "reload"],
+    "a_ports": 1,
+    "max_k": 64,
+    "max_rows": 16
+  },
+  "baseline_scenario": {
+    "name": "hypothetical-100MHz-10MBps-8Bcmd",
+    "core_hz": 100000000,
+    "tx_bytes_per_second": 10000000,
+    "rx_bytes_per_second": 10000000,
+    "device_command_bytes": 8,
+    "device_setup_cycles": 2,
+    "host_dispatch_ns": 100,
+    "vm_offload_call_ns": 500,
+    "host_quant_ns_per_element": 20,
+    "host_pack_ns_per_element": 5,
+    "host_unpack_ns_per_element": 5
+  },
+  "representative": {
+    "lanes": 2,
+    "depth": 3,
+    "capacity_bytes": [64, 128, 192],
+    "buffers": 2,
+    "frames": [1, 8, 32],
+    "orders": ["latency_first", "weight_stationary"],
+    "weight_policies": ["resident", "reload"],
+    "factor_policy": "reload",
+    "factor_order": "latency_first",
+    "factor_sweeps": {
+      "command_bytes": [2, 8, 32],
+      "link_bytes_per_second": [1000000, 10000000, 50000000],
+      "core_hz": [100000000, 200000000]
+    }
+  },
+  "trace_policy": {
+    "per_model": 2,
+    "lanes": 2,
+    "depth": 3,
+    "frames": 8,
+    "capacity_bytes": [128, 192],
+    "buffers": 2,
+    "order": "weight_stationary",
+    "weight_policy": "resident"
+  }
+}

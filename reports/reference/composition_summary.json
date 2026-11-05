@@ -1,0 +1,8 @@
+{
+  "vm_combinations": 42,
+  "validated_input_frames": 378,
+  "all_passed": true,
+  "sglang_shapes": 6,
+  "sglang_full_service": false,
+  "new_isa_vm": true
+}

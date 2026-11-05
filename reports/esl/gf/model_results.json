@@ -1,0 +1,840 @@
+{
+  "profile": {
+    "schema_version": 1,
+    "id": "gf",
+    "template_repository": "https://github.com/TinyTapeout/ttgf-verilog-template",
+    "template_commit": "e0d770f2c5683019858465324f6a4c36e94504db",
+    "source_urls": {
+      "workflow": "https://raw.githubusercontent.com/TinyTapeout/ttgf-verilog-template/e0d770f2c5683019858465324f6a4c36e94504db/.github/workflows/gds.yaml",
+      "config": "https://raw.githubusercontent.com/TinyTapeout/ttgf-verilog-template/e0d770f2c5683019858465324f6a4c36e94504db/src/config.json",
+      "info": "https://raw.githubusercontent.com/TinyTapeout/ttgf-verilog-template/e0d770f2c5683019858465324f6a4c36e94504db/info.yaml",
+      "tile": "https://raw.githubusercontent.com/TinyTapeout/tt-support-tools/02abf73b5f5dcd2eabdda92b074bf00c4446d886/tech/gf180mcuD/tile_sizes.yaml",
+      "action": "https://raw.githubusercontent.com/TinyTapeout/tt-gds-action/395eedb3eeec3c2f4961c3b04ff2cf87f5525636/action.yml"
+    },
+    "action_ref": "ttgf26c",
+    "action_repository": "https://github.com/TinyTapeout/tt-gds-action",
+    "action_commit": "395eedb3eeec3c2f4961c3b04ff2cf87f5525636",
+    "pdk": "gf180mcuD",
+    "librelane_version": "3.0.14",
+    "clock_period_ns": 20,
+    "density_pct": 60,
+    "tile_width_um": 346.64,
+    "tile_height_um": 160.72,
+    "tile_die_area_um2": 55711.9808,
+    "tile_configuration": "1x1",
+    "tile_die_area_bounds_um": [
+      0.0,
+      0.0,
+      346.64,
+      160.72
+    ],
+    "support_tools_repository": "https://github.com/TinyTapeout/tt-support-tools",
+    "support_tools_commit": "02abf73b5f5dcd2eabdda92b074bf00c4446d886",
+    "physical_performance_validated": false,
+    "source_snapshot_utc": "2026-10-29T05:17:50.510329Z",
+    "assumptions": [
+      "All templates use the same Tiny-LPU core and host cycle models; only technology/template metadata differ.",
+      "Cycle-to-time conversion uses a nominal clock constraint, not a validated silicon Fmax.",
+      "Selecting a PDK does not automatically change modeled cycle counts or the nominal clock sweep.",
+      "The tile DIE_AREA is the complete boundary, not the area available exclusively for standard cells.",
+      "A template action target does not establish shuttle availability, price, or a submission deadline."
+    ],
+    "analysis_template": "gf"
+  },
+  "model_executable": "<repo>/build_esl/tinylpu_esl",
+  "samples": [
+    {
+      "sample_key": "dot4_r1_h0",
+      "inputs": {
+        "a": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "w": [
+          7,
+          -8,
+          -1,
+          2
+        ]
+      },
+      "cli_output": {
+        "kernel": "dot4",
+        "rows": 1,
+        "k": 4,
+        "reuse": 1,
+        "host_wait": 0,
+        "functional_result": [
+          12
+        ],
+        "cycle_result": [
+          12
+        ],
+        "transactions": 1,
+        "macs": 4,
+        "weight_load_cycles": 2,
+        "input_load_cycles": 2,
+        "setup_cycles": 1,
+        "compute_cycles": 5,
+        "readout_cycles": 2,
+        "host_wait_cycles": 0,
+        "total_cycles": 12,
+        "peak_macs_per_cycle": 1,
+        "core_macs_per_cycle": 0.8
+      }
+    },
+    {
+      "sample_key": "dot4_r1_h4",
+      "inputs": {
+        "a": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "w": [
+          7,
+          -8,
+          -1,
+          2
+        ]
+      },
+      "cli_output": {
+        "kernel": "dot4",
+        "rows": 1,
+        "k": 4,
+        "reuse": 1,
+        "host_wait": 4,
+        "functional_result": [
+          12
+        ],
+        "cycle_result": [
+          12
+        ],
+        "transactions": 1,
+        "macs": 4,
+        "weight_load_cycles": 2,
+        "input_load_cycles": 2,
+        "setup_cycles": 1,
+        "compute_cycles": 5,
+        "readout_cycles": 2,
+        "host_wait_cycles": 4,
+        "total_cycles": 16,
+        "peak_macs_per_cycle": 1,
+        "core_macs_per_cycle": 0.8
+      }
+    },
+    {
+      "sample_key": "dot4_r1_h16",
+      "inputs": {
+        "a": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "w": [
+          7,
+          -8,
+          -1,
+          2
+        ]
+      },
+      "cli_output": {
+        "kernel": "dot4",
+        "rows": 1,
+        "k": 4,
+        "reuse": 1,
+        "host_wait": 16,
+        "functional_result": [
+          12
+        ],
+        "cycle_result": [
+          12
+        ],
+        "transactions": 1,
+        "macs": 4,
+        "weight_load_cycles": 2,
+        "input_load_cycles": 2,
+        "setup_cycles": 1,
+        "compute_cycles": 5,
+        "readout_cycles": 2,
+        "host_wait_cycles": 16,
+        "total_cycles": 28,
+        "peak_macs_per_cycle": 1,
+        "core_macs_per_cycle": 0.8
+      }
+    },
+    {
+      "sample_key": "dot4_r4_h0",
+      "inputs": {
+        "a": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "w": [
+          7,
+          -8,
+          -1,
+          2
+        ]
+      },
+      "cli_output": {
+        "kernel": "dot4",
+        "rows": 1,
+        "k": 4,
+        "reuse": 4,
+        "host_wait": 0,
+        "functional_result": [
+          12
+        ],
+        "cycle_result": [
+          12
+        ],
+        "transactions": 4,
+        "macs": 16,
+        "weight_load_cycles": 2,
+        "input_load_cycles": 8,
+        "setup_cycles": 4,
+        "compute_cycles": 20,
+        "readout_cycles": 8,
+        "host_wait_cycles": 0,
+        "total_cycles": 42,
+        "peak_macs_per_cycle": 1,
+        "core_macs_per_cycle": 0.8
+      }
+    },
+    {
+      "sample_key": "dot4_r4_h4",
+      "inputs": {
+        "a": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "w": [
+          7,
+          -8,
+          -1,
+          2
+        ]
+      },
+      "cli_output": {
+        "kernel": "dot4",
+        "rows": 1,
+        "k": 4,
+        "reuse": 4,
+        "host_wait": 4,
+        "functional_result": [
+          12
+        ],
+        "cycle_result": [
+          12
+        ],
+        "transactions": 4,
+        "macs": 16,
+        "weight_load_cycles": 2,
+        "input_load_cycles": 8,
+        "setup_cycles": 4,
+        "compute_cycles": 20,
+        "readout_cycles": 8,
+        "host_wait_cycles": 16,
+        "total_cycles": 58,
+        "peak_macs_per_cycle": 1,
+        "core_macs_per_cycle": 0.8
+      }
+    },
+    {
+      "sample_key": "dot4_r4_h16",
+      "inputs": {
+        "a": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "w": [
+          7,
+          -8,
+          -1,
+          2
+        ]
+      },
+      "cli_output": {
+        "kernel": "dot4",
+        "rows": 1,
+        "k": 4,
+        "reuse": 4,
+        "host_wait": 16,
+        "functional_result": [
+          12
+        ],
+        "cycle_result": [
+          12
+        ],
+        "transactions": 4,
+        "macs": 16,
+        "weight_load_cycles": 2,
+        "input_load_cycles": 8,
+        "setup_cycles": 4,
+        "compute_cycles": 20,
+        "readout_cycles": 8,
+        "host_wait_cycles": 64,
+        "total_cycles": 106,
+        "peak_macs_per_cycle": 1,
+        "core_macs_per_cycle": 0.8
+      }
+    },
+    {
+      "sample_key": "dot4_r16_h0",
+      "inputs": {
+        "a": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "w": [
+          7,
+          -8,
+          -1,
+          2
+        ]
+      },
+      "cli_output": {
+        "kernel": "dot4",
+        "rows": 1,
+        "k": 4,
+        "reuse": 16,
+        "host_wait": 0,
+        "functional_result": [
+          12
+        ],
+        "cycle_result": [
+          12
+        ],
+        "transactions": 16,
+        "macs": 64,
+        "weight_load_cycles": 2,
+        "input_load_cycles": 32,
+        "setup_cycles": 16,
+        "compute_cycles": 80,
+        "readout_cycles": 32,
+        "host_wait_cycles": 0,
+        "total_cycles": 162,
+        "peak_macs_per_cycle": 1,
+        "core_macs_per_cycle": 0.8
+      }
+    },
+    {
+      "sample_key": "dot4_r16_h4",
+      "inputs": {
+        "a": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "w": [
+          7,
+          -8,
+          -1,
+          2
+        ]
+      },
+      "cli_output": {
+        "kernel": "dot4",
+        "rows": 1,
+        "k": 4,
+        "reuse": 16,
+        "host_wait": 4,
+        "functional_result": [
+          12
+        ],
+        "cycle_result": [
+          12
+        ],
+        "transactions": 16,
+        "macs": 64,
+        "weight_load_cycles": 2,
+        "input_load_cycles": 32,
+        "setup_cycles": 16,
+        "compute_cycles": 80,
+        "readout_cycles": 32,
+        "host_wait_cycles": 64,
+        "total_cycles": 226,
+        "peak_macs_per_cycle": 1,
+        "core_macs_per_cycle": 0.8
+      }
+    },
+    {
+      "sample_key": "dot4_r16_h16",
+      "inputs": {
+        "a": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "w": [
+          7,
+          -8,
+          -1,
+          2
+        ]
+      },
+      "cli_output": {
+        "kernel": "dot4",
+        "rows": 1,
+        "k": 4,
+        "reuse": 16,
+        "host_wait": 16,
+        "functional_result": [
+          12
+        ],
+        "cycle_result": [
+          12
+        ],
+        "transactions": 16,
+        "macs": 64,
+        "weight_load_cycles": 2,
+        "input_load_cycles": 32,
+        "setup_cycles": 16,
+        "compute_cycles": 80,
+        "readout_cycles": 32,
+        "host_wait_cycles": 256,
+        "total_cycles": 418,
+        "peak_macs_per_cycle": 1,
+        "core_macs_per_cycle": 0.8
+      }
+    },
+    {
+      "sample_key": "gemv2x4_r1_h0",
+      "inputs": {
+        "a": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "w": [
+          7,
+          -8,
+          -1,
+          2,
+          -8,
+          7,
+          0,
+          -1
+        ]
+      },
+      "cli_output": {
+        "kernel": "gemv2x4",
+        "rows": 2,
+        "k": 4,
+        "reuse": 1,
+        "host_wait": 0,
+        "functional_result": [
+          12,
+          -18
+        ],
+        "cycle_result": [
+          12,
+          -18
+        ],
+        "transactions": 1,
+        "macs": 8,
+        "weight_load_cycles": 4,
+        "input_load_cycles": 2,
+        "setup_cycles": 1,
+        "compute_cycles": 10,
+        "readout_cycles": 4,
+        "host_wait_cycles": 0,
+        "total_cycles": 21,
+        "peak_macs_per_cycle": 1,
+        "core_macs_per_cycle": 0.8
+      }
+    },
+    {
+      "sample_key": "gemv2x4_r1_h4",
+      "inputs": {
+        "a": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "w": [
+          7,
+          -8,
+          -1,
+          2,
+          -8,
+          7,
+          0,
+          -1
+        ]
+      },
+      "cli_output": {
+        "kernel": "gemv2x4",
+        "rows": 2,
+        "k": 4,
+        "reuse": 1,
+        "host_wait": 4,
+        "functional_result": [
+          12,
+          -18
+        ],
+        "cycle_result": [
+          12,
+          -18
+        ],
+        "transactions": 1,
+        "macs": 8,
+        "weight_load_cycles": 4,
+        "input_load_cycles": 2,
+        "setup_cycles": 1,
+        "compute_cycles": 10,
+        "readout_cycles": 4,
+        "host_wait_cycles": 4,
+        "total_cycles": 25,
+        "peak_macs_per_cycle": 1,
+        "core_macs_per_cycle": 0.8
+      }
+    },
+    {
+      "sample_key": "gemv2x4_r1_h16",
+      "inputs": {
+        "a": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "w": [
+          7,
+          -8,
+          -1,
+          2,
+          -8,
+          7,
+          0,
+          -1
+        ]
+      },
+      "cli_output": {
+        "kernel": "gemv2x4",
+        "rows": 2,
+        "k": 4,
+        "reuse": 1,
+        "host_wait": 16,
+        "functional_result": [
+          12,
+          -18
+        ],
+        "cycle_result": [
+          12,
+          -18
+        ],
+        "transactions": 1,
+        "macs": 8,
+        "weight_load_cycles": 4,
+        "input_load_cycles": 2,
+        "setup_cycles": 1,
+        "compute_cycles": 10,
+        "readout_cycles": 4,
+        "host_wait_cycles": 16,
+        "total_cycles": 37,
+        "peak_macs_per_cycle": 1,
+        "core_macs_per_cycle": 0.8
+      }
+    },
+    {
+      "sample_key": "gemv2x4_r4_h0",
+      "inputs": {
+        "a": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "w": [
+          7,
+          -8,
+          -1,
+          2,
+          -8,
+          7,
+          0,
+          -1
+        ]
+      },
+      "cli_output": {
+        "kernel": "gemv2x4",
+        "rows": 2,
+        "k": 4,
+        "reuse": 4,
+        "host_wait": 0,
+        "functional_result": [
+          12,
+          -18
+        ],
+        "cycle_result": [
+          12,
+          -18
+        ],
+        "transactions": 4,
+        "macs": 32,
+        "weight_load_cycles": 4,
+        "input_load_cycles": 8,
+        "setup_cycles": 4,
+        "compute_cycles": 40,
+        "readout_cycles": 16,
+        "host_wait_cycles": 0,
+        "total_cycles": 72,
+        "peak_macs_per_cycle": 1,
+        "core_macs_per_cycle": 0.8
+      }
+    },
+    {
+      "sample_key": "gemv2x4_r4_h4",
+      "inputs": {
+        "a": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "w": [
+          7,
+          -8,
+          -1,
+          2,
+          -8,
+          7,
+          0,
+          -1
+        ]
+      },
+      "cli_output": {
+        "kernel": "gemv2x4",
+        "rows": 2,
+        "k": 4,
+        "reuse": 4,
+        "host_wait": 4,
+        "functional_result": [
+          12,
+          -18
+        ],
+        "cycle_result": [
+          12,
+          -18
+        ],
+        "transactions": 4,
+        "macs": 32,
+        "weight_load_cycles": 4,
+        "input_load_cycles": 8,
+        "setup_cycles": 4,
+        "compute_cycles": 40,
+        "readout_cycles": 16,
+        "host_wait_cycles": 16,
+        "total_cycles": 88,
+        "peak_macs_per_cycle": 1,
+        "core_macs_per_cycle": 0.8
+      }
+    },
+    {
+      "sample_key": "gemv2x4_r4_h16",
+      "inputs": {
+        "a": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "w": [
+          7,
+          -8,
+          -1,
+          2,
+          -8,
+          7,
+          0,
+          -1
+        ]
+      },
+      "cli_output": {
+        "kernel": "gemv2x4",
+        "rows": 2,
+        "k": 4,
+        "reuse": 4,
+        "host_wait": 16,
+        "functional_result": [
+          12,
+          -18
+        ],
+        "cycle_result": [
+          12,
+          -18
+        ],
+        "transactions": 4,
+        "macs": 32,
+        "weight_load_cycles": 4,
+        "input_load_cycles": 8,
+        "setup_cycles": 4,
+        "compute_cycles": 40,
+        "readout_cycles": 16,
+        "host_wait_cycles": 64,
+        "total_cycles": 136,
+        "peak_macs_per_cycle": 1,
+        "core_macs_per_cycle": 0.8
+      }
+    },
+    {
+      "sample_key": "gemv2x4_r16_h0",
+      "inputs": {
+        "a": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "w": [
+          7,
+          -8,
+          -1,
+          2,
+          -8,
+          7,
+          0,
+          -1
+        ]
+      },
+      "cli_output": {
+        "kernel": "gemv2x4",
+        "rows": 2,
+        "k": 4,
+        "reuse": 16,
+        "host_wait": 0,
+        "functional_result": [
+          12,
+          -18
+        ],
+        "cycle_result": [
+          12,
+          -18
+        ],
+        "transactions": 16,
+        "macs": 128,
+        "weight_load_cycles": 4,
+        "input_load_cycles": 32,
+        "setup_cycles": 16,
+        "compute_cycles": 160,
+        "readout_cycles": 64,
+        "host_wait_cycles": 0,
+        "total_cycles": 276,
+        "peak_macs_per_cycle": 1,
+        "core_macs_per_cycle": 0.8
+      }
+    },
+    {
+      "sample_key": "gemv2x4_r16_h4",
+      "inputs": {
+        "a": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "w": [
+          7,
+          -8,
+          -1,
+          2,
+          -8,
+          7,
+          0,
+          -1
+        ]
+      },
+      "cli_output": {
+        "kernel": "gemv2x4",
+        "rows": 2,
+        "k": 4,
+        "reuse": 16,
+        "host_wait": 4,
+        "functional_result": [
+          12,
+          -18
+        ],
+        "cycle_result": [
+          12,
+          -18
+        ],
+        "transactions": 16,
+        "macs": 128,
+        "weight_load_cycles": 4,
+        "input_load_cycles": 32,
+        "setup_cycles": 16,
+        "compute_cycles": 160,
+        "readout_cycles": 64,
+        "host_wait_cycles": 64,
+        "total_cycles": 340,
+        "peak_macs_per_cycle": 1,
+        "core_macs_per_cycle": 0.8
+      }
+    },
+    {
+      "sample_key": "gemv2x4_r16_h16",
+      "inputs": {
+        "a": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "w": [
+          7,
+          -8,
+          -1,
+          2,
+          -8,
+          7,
+          0,
+          -1
+        ]
+      },
+      "cli_output": {
+        "kernel": "gemv2x4",
+        "rows": 2,
+        "k": 4,
+        "reuse": 16,
+        "host_wait": 16,
+        "functional_result": [
+          12,
+          -18
+        ],
+        "cycle_result": [
+          12,
+          -18
+        ],
+        "transactions": 16,
+        "macs": 128,
+        "weight_load_cycles": 4,
+        "input_load_cycles": 32,
+        "setup_cycles": 16,
+        "compute_cycles": 160,
+        "readout_cycles": 64,
+        "host_wait_cycles": 256,
+        "total_cycles": 532,
+        "peak_macs_per_cycle": 1,
+        "core_macs_per_cycle": 0.8
+      }
+    }
+  ],
+  "physical_performance_validated": false
+}

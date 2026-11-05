@@ -1,0 +1,34 @@
+{
+  "architecture": "tinylpu-v1",
+  "isa_version": "0.1",
+  "status": "logical proposal and software-validated target; complete chip RTL/PPA pending",
+  "baseline": {
+    "profile": {"scratch_bytes":128,"lanes":2,"depth":3,"accumulator_bits":32,"memory_byte_bw":1,"enable_int8":false},
+    "resources": {"banks":4,"flat_read_ports":1,"read_latency":1,"copy_bytes_per_cycle":1},
+    "storage_policy": "bank4",
+    "bank_mapping": "byte_address modulo 4",
+    "weight_stride": "smallest stride >= packed row bytes and stride modulo 4 equals 2",
+    "activation_base": "first available address modulo 4 equals 1",
+    "write_policy": "single byte per cycle; computation/transfer phases serialized",
+    "validity": "one valid bit per byte; clear on reset/start/ena abort"
+  },
+  "alternatives": {
+    "larger_working_set": {"scratch_bytes":192,"purpose":"longer-K weight reuse; mapped area trade-off"},
+    "low_resource": {"scratch_bytes":64,"lanes":1,"banks":0,"flat_read_ports":1,"storage":"packed"}
+  },
+  "transport": {
+    "ui_in":"rx_data[7:0]","uo_out":"tx_data[7:0]",
+    "uio_input_bits":{"0":"rx_valid","1":"tx_ready","7":"start rising edge"},
+    "uio_output_bits":{"2":"rx_ready","3":"tx_valid","4":"busy","5":"done","6":"error"},
+    "selected_uio_oe":124,
+    "clock_domain":"single synchronous clock; no CDC bridge or PLL",
+    "reset":"rst_n synchronous active-low, hold for >=2 rising edges",
+    "ena_low":"abort, clear control/validity, deassert outputs and output-enable"
+  },
+  "clock_constraint_exploration_mhz":[100,150,200],
+  "checked_address_intermediate_bits":13,
+  "physical_fmax_validated":false,
+  "board_operating_frequency":"requires declared PDK/pad/board qualification",
+  "upstream":"torch.export/Relax VM supported DAG; opt-in installed SGLang CPU Linear interposer",
+  "dependency_boundary":{"compiler_tvm_ffi":"0.1.15.post2","sglang_tvm_ffi":"0.1.11","runtime":"standalone C ABI and lightweight ISA codegen; no TVM import in serving adapter"}
+}

@@ -1,0 +1,32 @@
+Tiny-LPU v0.2.0 public-tree SGLang DeviceRuntime receipt
+=========================================================
+
+This is a new run from the v0.2.0 public tree, distinct from the carried
+reference file `reports/reference/sglang_layer_summary.json`.  The host
+Python 3.11 SGLang environment imported the compiler from `compiler/` and
+loaded `build_esl/libtinylpu_isa.so`, `libtinylpu_architecture.so`, and
+`libtinylpu_device.so` built from this public tree.
+
+Command:
+
+```sh
+PY=/absolute/path/to/python3.11
+PYTHONPATH="$PWD/compiler" LD_LIBRARY_PATH="$PWD/build_esl" \
+  "$PY" scripts/run_sglang_layer_experiment.py \
+  --engine device --capacity 64 --lanes 1 \
+  --output reports/reference/sglang_public_device_actual
+```
+
+Result: PASS
+
+- SGLang 0.5.22, `ReplicatedLinear`
+- device profile: capacity 64, lanes 1, ACC32
+- six shape cases: frames 1/8 × (M,K) = (3,17), (8,16), (8,64)
+- two offload calls per case, 12 total
+- numeric oracle and bias contract passed in every case
+- `full_srt_service: false`; this is a CPU layer/DeviceRuntime experiment,
+  not a complete SRT service or physical accelerator driver
+
+The machine-readable full receipt, including per-case cycle/resource data and
+source hashes, is
+`reports/reference/sglang_public_device_actual/summary.json`.

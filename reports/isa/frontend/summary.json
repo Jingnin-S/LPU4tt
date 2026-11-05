@@ -1,0 +1,116 @@
+{
+  "models": 6,
+  "encoding_variants": 12,
+  "runtime_inputs": 192,
+  "records": [
+    {
+      "name": "linear_16x8",
+      "k": 16,
+      "encoding": 4,
+      "samples": 16,
+      "device_partitions": 1,
+      "byoc_partitions": 1,
+      "all_numerical_checks_passed": true
+    },
+    {
+      "name": "linear_16x8",
+      "k": 16,
+      "encoding": 8,
+      "samples": 16,
+      "device_partitions": 1,
+      "byoc_partitions": 1,
+      "all_numerical_checks_passed": true
+    },
+    {
+      "name": "linear_tail_16x7",
+      "k": 16,
+      "encoding": 4,
+      "samples": 16,
+      "device_partitions": 1,
+      "byoc_partitions": 1,
+      "all_numerical_checks_passed": true
+    },
+    {
+      "name": "linear_tail_16x7",
+      "k": 16,
+      "encoding": 8,
+      "samples": 16,
+      "device_partitions": 1,
+      "byoc_partitions": 1,
+      "all_numerical_checks_passed": true
+    },
+    {
+      "name": "linear_odd_k17x3",
+      "k": 17,
+      "encoding": 4,
+      "samples": 16,
+      "device_partitions": 1,
+      "byoc_partitions": 1,
+      "all_numerical_checks_passed": true
+    },
+    {
+      "name": "linear_odd_k17x3",
+      "k": 17,
+      "encoding": 8,
+      "samples": 16,
+      "device_partitions": 1,
+      "byoc_partitions": 1,
+      "all_numerical_checks_passed": true
+    },
+    {
+      "name": "mlp_16x4x4",
+      "k": 16,
+      "encoding": 4,
+      "samples": 16,
+      "device_partitions": 2,
+      "byoc_partitions": 2,
+      "all_numerical_checks_passed": true
+    },
+    {
+      "name": "mlp_16x4x4",
+      "k": 16,
+      "encoding": 8,
+      "samples": 16,
+      "device_partitions": 2,
+      "byoc_partitions": 2,
+      "all_numerical_checks_passed": true
+    },
+    {
+      "name": "linear_65x3",
+      "k": 65,
+      "encoding": 4,
+      "samples": 16,
+      "device_partitions": 1,
+      "byoc_partitions": 1,
+      "all_numerical_checks_passed": true
+    },
+    {
+      "name": "linear_65x3",
+      "k": 65,
+      "encoding": 8,
+      "samples": 16,
+      "device_partitions": 1,
+      "byoc_partitions": 1,
+      "all_numerical_checks_passed": true
+    },
+    {
+      "name": "linear_256x3",
+      "k": 256,
+      "encoding": 4,
+      "samples": 16,
+      "device_partitions": 1,
+      "byoc_partitions": 1,
+      "all_numerical_checks_passed": true
+    },
+    {
+      "name": "linear_256x3",
+      "k": 256,
+      "encoding": 8,
+      "samples": 16,
+      "device_partitions": 1,
+      "byoc_partitions": 1,
+      "all_numerical_checks_passed": true
+    }
+  ],
+  "scope": "Real Relax partition frontend and explicit host interpreter; no new TVM VM backend or SGLang service"
+}

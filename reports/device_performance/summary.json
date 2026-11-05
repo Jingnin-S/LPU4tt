@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "configurations": 72,
+  "planner": "Existing resource+link objective selects each executable candidate; measured device cycles are separate",
+  "assumptions": "No external stalls; all compiler/ISA integer results and analytical full-device cycle counts checked",
+  "physical_fmax_validated": false,
+  "source_sha256": {
+    "cpp/tinylpu_device.cpp": "a6a1fa04b0e33bb7da644f6036d08f79b72876f5d4bc5be52e821248442cf0cd",
+    "compiler/tinylpu_compiler/device.py": "839ca751de35817c4c5589f1de9be793cabceff1d8ef3f99859351e15cdef89b",
+    "scripts/run_device_performance.py": "a09874c31bebcbefb695b33a635705106552722b72ac8dbe2dd496509a0f6a3f"
+  },
+  "note": "Compare cycles within identical m/k/frames. Runtime wall time is simulation, not hardware latency."
+}

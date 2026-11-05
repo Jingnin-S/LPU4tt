@@ -1,0 +1,20 @@
+{
+  "seed": 20261103,
+  "fixtures": [[1, 1], [3, 17], [7, 16], [8, 16], [8, 64], [8, 65], [8, 256], [4, 1024], [3, 4096]],
+  "int8_fixtures": [[3, 17], [8, 16], [8, 64], [8, 256], [3, 4096]],
+  "scratch_bytes": [32, 64, 96, 128, 192, 256],
+  "frames": [1, 8],
+  "output_bits": [16, 32],
+  "orders": ["frame_major", "weight_stationary"],
+  "encodings": [4, 8],
+  "tile_k_candidates": [1, 4, 8, 16, 32, 48, 64],
+  "lanes": 2,
+  "depth": 3,
+  "memory_byte_bw": 2,
+  "selection_core_hz": 100000000,
+  "selection_link_Bps": 10000000,
+  "selection_host_ns": 0,
+  "factor_core_hz": [100000000, 200000000],
+  "factor_link_Bps": [1000000, 10000000, 50000000],
+  "factor_host_ns": [0, 1000]
+}

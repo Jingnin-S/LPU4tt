@@ -1,0 +1,73 @@
+{
+  "sglang_version": "0.5.22",
+  "class": "sglang.srt.layers.linear.ReplicatedLinear",
+  "normal_constructor": true,
+  "actual_module_import": true,
+  "shape_cases": 6,
+  "full_srt_service": false,
+  "all_passed": true,
+  "linear_source_sha256": "3ce31df0a8aab09ed8afa0ada8c0ce30ca207a748c02c3073d7f53648b9b7c3c",
+  "post_load_hook_executed": true,
+  "runtime_versions": {
+    "torch": "2.14.1+cpu",
+    "numpy": "2.4.6",
+    "transformers": "5.19.0",
+    "apache-tvm-ffi": "0.1.11"
+  },
+  "cases": [
+    {
+      "frames": 1,
+      "m": 3,
+      "k": 17,
+      "offload_calls": 2,
+      "nrmse_vs_fp32": 0.11951515823602676,
+      "numeric_oracle": "PASS",
+      "bias_contract": "PASS"
+    },
+    {
+      "frames": 1,
+      "m": 8,
+      "k": 16,
+      "offload_calls": 2,
+      "nrmse_vs_fp32": 0.14955520629882812,
+      "numeric_oracle": "PASS",
+      "bias_contract": "PASS"
+    },
+    {
+      "frames": 1,
+      "m": 8,
+      "k": 64,
+      "offload_calls": 2,
+      "nrmse_vs_fp32": 0.10549524426460266,
+      "numeric_oracle": "PASS",
+      "bias_contract": "PASS"
+    },
+    {
+      "frames": 8,
+      "m": 3,
+      "k": 17,
+      "offload_calls": 2,
+      "nrmse_vs_fp32": 0.1452583223581314,
+      "numeric_oracle": "PASS",
+      "bias_contract": "PASS"
+    },
+    {
+      "frames": 8,
+      "m": 8,
+      "k": 16,
+      "offload_calls": 2,
+      "nrmse_vs_fp32": 0.1296652853488922,
+      "numeric_oracle": "PASS",
+      "bias_contract": "PASS"
+    },
+    {
+      "frames": 8,
+      "m": 8,
+      "k": 64,
+      "offload_calls": 2,
+      "nrmse_vs_fp32": 0.14983493089675903,
+      "numeric_oracle": "PASS",
+      "bias_contract": "PASS"
+    }
+  ]
+}

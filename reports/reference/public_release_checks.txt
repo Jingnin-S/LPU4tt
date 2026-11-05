@@ -1,0 +1,56 @@
+Tiny-LPU v0.2.0 server-side release checks
+===========================================
+
+The commands below were run from the new release tree on the USC server.
+Generated build trees, virtual environments, simulator work directories, and
+large cycle-vector files were removed before packaging.
+
+Host model environment
+----------------------
+Python 3.11.16 (existing compiler environment)
+CMake 3.26.5
+GCC 11.5.0
+
+Passed checks
+-------------
+cmake -S . -B build_esl -DCMAKE_BUILD_TYPE=Debug
+cmake --build build_esl --parallel 2
+ctest --test-dir build_esl --output-on-failure
+  10/10 CTest targets passed.
+
+python -m pytest tests/software -q
+  69 passed.
+python -m unittest discover -s tests -p 'test*analysis.py' -v
+  24 tests passed.
+python -m pip check
+  No broken requirements found.
+python scripts/run_release_smoke.py
+  Clean checkout smoke PASS: torch.export -> Relax DAG -> fused VM callback
+  -> real ISA C++.
+python -m pip wheel . --no-deps
+  Built tinylpu-0.2.0-py3-none-any.whl.
+
+RTL/container checks
+--------------------
+The host has no bare iverilog/verilator on PATH, so the locked
+ghcr.io/librelane/librelane:3.0.14 image was used for simulation and lint.
+The host Python 3.11 model generated the six vector sets first; the container
+then ran scripts/run_device_rtl.py --simulator iverilog --vectors-root ... .
+Icarus 13.0 and Verilator 5.044 both completed successfully.  Profiles were
+64:1, 64:2, 128:1, 128:2, 256:1, and 256:2; each had 67 cases, and the
+aggregate was 791566 cycles.  The per-profile compact record is in
+reports/reference/device_public_rtl_regression_summary.json.
+
+The same image, with the separately locked cocotb 2.1.0 site-packages cache,
+ran scripts/run_device_cocotb.py for the public 64:1 profile and passed the
+pin-only independent arithmetic test.  No STA or physical claim is inferred
+from this test.  The image does not include GNU make, so the template Makefile
+was not invoked; the dedicated cocotb runner is the executed equivalent.
+
+Release boundary
+----------------
+The physical qualification metadata is retained in reports/reference and
+docs/tt_signoff_results.md.  It refers to the independently archived server
+candidate and its source hashes; this source archive does not contain its GDS,
+PDK, mapped netlist, or private work directory.  No GitHub push or tapeout
+submission was performed.

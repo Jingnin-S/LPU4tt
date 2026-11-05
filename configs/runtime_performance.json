@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "description": "Hypothetical transport/host cost sweep, not measured board performance. The 8-byte device command is an analysis assumption, not ABI v1's 32-byte host instruction or a frozen hardware ISA.",
+  "base": {
+    "device_command_bytes": 8,
+    "device_setup_cycles": 2,
+    "host_dispatch_ns": 100,
+    "vm_offload_call_ns": 500,
+    "host_quant_ns_per_element": 20,
+    "host_pack_ns_per_element": 5,
+    "host_unpack_ns_per_element": 5
+  },
+  "core_hz": [50000000, 100000000, 200000000],
+  "bidirectional_bytes_per_second": [1000000, 10000000, 50000000]
+}

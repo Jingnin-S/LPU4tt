@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "capacity": 64,
+  "lanes": 1,
+  "simulator": "iverilog",
+  "cocotb": "2.1.0",
+  "source_sha256": {
+    "/workspace/project/rtl/tinylpu_device_memory.sv": "d8ba9b8476fa39c75ff73b94a09b3eeb598e1b4115c517bc5073397ae7b78ec2",
+    "/workspace/project/rtl/tinylpu_device.sv": "9fb9d085a29c4ee30b046583b4a6332206dbe13689f40644f4ae78160d5bd246",
+    "/workspace/project/rtl/tt_um_tinylpu_v1.sv": "7c55235ca496cb702e9afc19aab99af1aaac038c043b1e83a4249a198260ca7c",
+    "/workspace/project/tests/rtl/test_device.py": "1dfa0c2c478a56f5a749eceb4c38bcca66fb7220342b43420da1a58cfd1753fd"
+  },
+  "scope": "Pin-only RTL test, independent arithmetic expectations; no STA claim"
+}

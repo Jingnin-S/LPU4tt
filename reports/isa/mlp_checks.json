@@ -1,0 +1,180 @@
+[
+  {
+    "encoding": 4,
+    "frames": 8,
+    "host_op": "relu; RNE(x/32); clip[0,7]",
+    "source_sha256": "f8986e2c32b2fdf55c1c7960ceb14f3ece3d13c5e38173690b3331c3711028a7",
+    "layer1_report": {
+      "stores_hex": "b4ffffffbfffffff00000000baffffff5d000000f9fffffffdffffff140000003d000000e3ffffff160000008fffffffa2ffffffc6ffffff8bffffff1a0000006e000000efffffffd8ffffff38000000c8ffffff86ffffffa4ffffffa8ffffff48000000f8ffffffefffffffb9ffffff95ffffff92ffffff6cfffffffbffffff010000003700000034000000320000004c0000005200000045000000eaffffff49000000ddffffffbaffffffd5ffffffc8ffffffc4ffffffc7ffffff5a000000110000002200000044000000b7ffffffe1ffffffdbffffffa2ffffffbaffffffbbffffffd9ffffff570000002f00000028000000f2ffffffdf0000000b000000",
+      "command_count": 26,
+      "mvm_count": 8,
+      "macs": 1024,
+      "core_cycles": 576,
+      "scratch_cycles": 320,
+      "decode_cycles": 26,
+      "device_cycles": 922,
+      "load_bytes": 128,
+      "store_bytes": 256,
+      "command_bytes": 136,
+      "overflow_events": 0,
+      "saturation_events": 0,
+      "peak_scratch_end": 104
+    },
+    "layer2_report": {
+      "stores_hex": "13000000ebfffffffdfffffff5fffffff4fffffff5fffffff8ffffffffffffffe0ffffffeefffffffcffffff16000000f4fffffff4ffffff0000000008000000e1fffffff0fffffff6ffffffecfffffff7fffffff4ffffffeefffffff9fffffff0fffffffbfffffffffffffffcffffffcbffffff1f000000ebfffffff7ffffff",
+      "command_count": 26,
+      "mvm_count": 8,
+      "macs": 256,
+      "core_cycles": 160,
+      "scratch_cycles": 152,
+      "decode_cycles": 26,
+      "device_cycles": 338,
+      "load_bytes": 48,
+      "store_bytes": 128,
+      "command_bytes": 136,
+      "overflow_events": 0,
+      "saturation_events": 0,
+      "peak_scratch_end": 36
+    },
+    "output": [
+      [
+        19,
+        -21,
+        -3,
+        -11
+      ],
+      [
+        -12,
+        -11,
+        -8,
+        -1
+      ],
+      [
+        -32,
+        -18,
+        -4,
+        22
+      ],
+      [
+        -12,
+        -12,
+        0,
+        8
+      ],
+      [
+        -31,
+        -16,
+        -10,
+        -20
+      ],
+      [
+        -9,
+        -12,
+        -18,
+        -7
+      ],
+      [
+        -16,
+        -5,
+        -1,
+        -4
+      ],
+      [
+        -53,
+        31,
+        -21,
+        -9
+      ]
+    ],
+    "passed": true
+  },
+  {
+    "encoding": 8,
+    "frames": 8,
+    "host_op": "relu; RNE(x/32); clip[0,7]",
+    "source_sha256": "f8986e2c32b2fdf55c1c7960ceb14f3ece3d13c5e38173690b3331c3711028a7",
+    "layer1_report": {
+      "stores_hex": "b4ffffffbfffffff00000000baffffff5d000000f9fffffffdffffff140000003d000000e3ffffff160000008fffffffa2ffffffc6ffffff8bffffff1a0000006e000000efffffffd8ffffff38000000c8ffffff86ffffffa4ffffffa8ffffff48000000f8ffffffefffffffb9ffffff95ffffff92ffffff6cfffffffbffffff010000003700000034000000320000004c0000005200000045000000eaffffff49000000ddffffffbaffffffd5ffffffc8ffffffc4ffffffc7ffffff5a000000110000002200000044000000b7ffffffe1ffffffdbffffffa2ffffffbaffffffbbffffffd9ffffff570000002f00000028000000f2ffffffdf0000000b000000",
+      "command_count": 26,
+      "mvm_count": 8,
+      "macs": 1024,
+      "core_cycles": 576,
+      "scratch_cycles": 320,
+      "decode_cycles": 26,
+      "device_cycles": 922,
+      "load_bytes": 128,
+      "store_bytes": 256,
+      "command_bytes": 208,
+      "overflow_events": 0,
+      "saturation_events": 0,
+      "peak_scratch_end": 104
+    },
+    "layer2_report": {
+      "stores_hex": "13000000ebfffffffdfffffff5fffffff4fffffff5fffffff8ffffffffffffffe0ffffffeefffffffcffffff16000000f4fffffff4ffffff0000000008000000e1fffffff0fffffff6ffffffecfffffff7fffffff4ffffffeefffffff9fffffff0fffffffbfffffffffffffffcffffffcbffffff1f000000ebfffffff7ffffff",
+      "command_count": 26,
+      "mvm_count": 8,
+      "macs": 256,
+      "core_cycles": 160,
+      "scratch_cycles": 152,
+      "decode_cycles": 26,
+      "device_cycles": 338,
+      "load_bytes": 48,
+      "store_bytes": 128,
+      "command_bytes": 208,
+      "overflow_events": 0,
+      "saturation_events": 0,
+      "peak_scratch_end": 36
+    },
+    "output": [
+      [
+        19,
+        -21,
+        -3,
+        -11
+      ],
+      [
+        -12,
+        -11,
+        -8,
+        -1
+      ],
+      [
+        -32,
+        -18,
+        -4,
+        22
+      ],
+      [
+        -12,
+        -12,
+        0,
+        8
+      ],
+      [
+        -31,
+        -16,
+        -10,
+        -20
+      ],
+      [
+        -9,
+        -12,
+        -18,
+        -7
+      ],
+      [
+        -16,
+        -5,
+        -1,
+        -4
+      ],
+      [
+        -53,
+        31,
+        -21,
+        -9
+      ]
+    ],
+    "passed": true
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "status": "ESL targets awaiting RTL and STA",
+  "core_target_mhz": 100,
+  "core_target_clock_period_ns": 10,
+  "stretch_targets_mhz": [150, 200],
+  "physical_performance_validated": false,
+  "profiles": {
+    "compact": {"lanes": 1, "pipeline_depth": 3, "data_capacity_bytes": [16, 32]},
+    "balanced": {"lanes": 2, "pipeline_depth": 3, "data_capacity_bytes": 64, "a_result_buffers": 2},
+    "larger_storage": {"lanes": 2, "pipeline_depth": 3, "data_capacity_bytes": 192, "a_result_buffers": 2}
+  },
+  "template_targets": {
+    "sky": {"core_target_clock_period_ns": 10, "external_clock_pad_rated_max_mhz": 66, "external_operation_target_mhz": 50},
+    "ihp": {"core_target_clock_period_ns": 10, "external_clock_pad_rated_max_mhz": null, "external_operation_target_mhz": null},
+    "gf": {"core_target_clock_period_ns": 10, "external_clock_pad_rated_max_mhz": null, "external_operation_target_mhz": null}
+  },
+  "notes": [
+    "Targets do not modify the pinned official template source snapshots.",
+    "No PDK has a measured Fmax or area result in this project yet.",
+    "IHP/GF board-level clock conditions must be checked independently.",
+    "Data capacity counts weights and A/result buffers; pipeline/control state is extra.",
+    "No proposed storage size is guaranteed to fit one Tiny Tapeout tile."
+  ]
+}

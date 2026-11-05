@@ -1,0 +1,313 @@
+{
+  "release": "v0.2.1",
+  "isa": "v0.1",
+  "execution_date": "2026-11-05",
+  "base_source_commit": "606c68168d5305be7100f198276d670b3a2e6965",
+  "execution": "Linux server, Python 3.11",
+  "software_checks": {
+    "ctest": 10,
+    "analysis": 24,
+    "software": 69,
+    "dependency_check": "PASS",
+    "real_frontend_vm_isa_smoke": "PASS"
+  },
+  "fresh_experiments": {
+    "isa": {
+      "fixtures": [
+        {
+          "name": "linear_1x1",
+          "rows": 1,
+          "k": 1,
+          "runs": 96,
+          "source_sha256": "b10f237e415e8dcb939d90577c8d7be99ace37498849f9dd1fe9d2b7a748a4cb"
+        },
+        {
+          "name": "linear_17x3",
+          "rows": 3,
+          "k": 17,
+          "runs": 192,
+          "source_sha256": "bc2889a3424683d19cfd2d398a92301ff2957d5b7c281498857f50de0fdd4dcd"
+        },
+        {
+          "name": "linear_16x7",
+          "rows": 7,
+          "k": 16,
+          "runs": 96,
+          "source_sha256": "0c5e69776ced7ab96d73e6b043b1745b788490965929b9812376fa91a7ecf8ea"
+        },
+        {
+          "name": "linear_16x8",
+          "rows": 8,
+          "k": 16,
+          "runs": 192,
+          "source_sha256": "8fa5c4efb445bc320ca2ab94bec47971ee4ca573a946a73bd13c3add6109da31"
+        },
+        {
+          "name": "linear_64x8",
+          "rows": 8,
+          "k": 64,
+          "runs": 192,
+          "source_sha256": "473caadbd3983695cc04bcc99e68a92097b1e1ca0f1122cca5ea3a1356bd1eb9"
+        },
+        {
+          "name": "linear_65x8",
+          "rows": 8,
+          "k": 65,
+          "runs": 96,
+          "source_sha256": "7ec7ce91cd2bbf93e13e322bc6cd063ed7152bf50b7dd0a5546746916be27797"
+        },
+        {
+          "name": "linear_256x8",
+          "rows": 8,
+          "k": 256,
+          "runs": 192,
+          "source_sha256": "6134365cda06acd6129af3b84992912075c2658954c27d70b7d5ef129c905300"
+        },
+        {
+          "name": "linear_1024x4",
+          "rows": 4,
+          "k": 1024,
+          "runs": 96,
+          "source_sha256": "0b7a652e6f7f8e99d05937f3b019266f2c903ff64e15ec46fba3b1ab6e351bc5"
+        },
+        {
+          "name": "linear_4096x3",
+          "rows": 3,
+          "k": 4096,
+          "runs": 192,
+          "source_sha256": "6131618a5fd6fc1bb65e4256de23e8c425e37b1b0a67e7a0b9a909fc5af39e71"
+        }
+      ],
+      "comparison_rows": 1344,
+      "tiling_candidates": 13108,
+      "factor_rows": 336,
+      "legacy_checks": 10,
+      "diagnostic_runs": 31,
+      "mlp_graphs": 2,
+      "cpp_runs": 1379,
+      "errors": 0,
+      "physical_performance_validated": false
+    },
+    "frontend": {
+      "models": 6,
+      "encoding_variants": 12,
+      "runtime_inputs": 192,
+      "records": [
+        {
+          "name": "linear_16x8",
+          "k": 16,
+          "encoding": 4,
+          "samples": 16,
+          "device_partitions": 1,
+          "byoc_partitions": 1,
+          "all_numerical_checks_passed": true
+        },
+        {
+          "name": "linear_16x8",
+          "k": 16,
+          "encoding": 8,
+          "samples": 16,
+          "device_partitions": 1,
+          "byoc_partitions": 1,
+          "all_numerical_checks_passed": true
+        },
+        {
+          "name": "linear_tail_16x7",
+          "k": 16,
+          "encoding": 4,
+          "samples": 16,
+          "device_partitions": 1,
+          "byoc_partitions": 1,
+          "all_numerical_checks_passed": true
+        },
+        {
+          "name": "linear_tail_16x7",
+          "k": 16,
+          "encoding": 8,
+          "samples": 16,
+          "device_partitions": 1,
+          "byoc_partitions": 1,
+          "all_numerical_checks_passed": true
+        },
+        {
+          "name": "linear_odd_k17x3",
+          "k": 17,
+          "encoding": 4,
+          "samples": 16,
+          "device_partitions": 1,
+          "byoc_partitions": 1,
+          "all_numerical_checks_passed": true
+        },
+        {
+          "name": "linear_odd_k17x3",
+          "k": 17,
+          "encoding": 8,
+          "samples": 16,
+          "device_partitions": 1,
+          "byoc_partitions": 1,
+          "all_numerical_checks_passed": true
+        },
+        {
+          "name": "mlp_16x4x4",
+          "k": 16,
+          "encoding": 4,
+          "samples": 16,
+          "device_partitions": 2,
+          "byoc_partitions": 2,
+          "all_numerical_checks_passed": true
+        },
+        {
+          "name": "mlp_16x4x4",
+          "k": 16,
+          "encoding": 8,
+          "samples": 16,
+          "device_partitions": 2,
+          "byoc_partitions": 2,
+          "all_numerical_checks_passed": true
+        },
+        {
+          "name": "linear_65x3",
+          "k": 65,
+          "encoding": 4,
+          "samples": 16,
+          "device_partitions": 1,
+          "byoc_partitions": 1,
+          "all_numerical_checks_passed": true
+        },
+        {
+          "name": "linear_65x3",
+          "k": 65,
+          "encoding": 8,
+          "samples": 16,
+          "device_partitions": 1,
+          "byoc_partitions": 1,
+          "all_numerical_checks_passed": true
+        },
+        {
+          "name": "linear_256x3",
+          "k": 256,
+          "encoding": 4,
+          "samples": 16,
+          "device_partitions": 1,
+          "byoc_partitions": 1,
+          "all_numerical_checks_passed": true
+        },
+        {
+          "name": "linear_256x3",
+          "k": 256,
+          "encoding": 8,
+          "samples": 16,
+          "device_partitions": 1,
+          "byoc_partitions": 1,
+          "all_numerical_checks_passed": true
+        }
+      ],
+      "scope": "Real Relax partition frontend and explicit host interpreter; no new TVM VM backend or SGLang service"
+    },
+    "ablations": {
+      "executed_streams": 5,
+      "rows": [
+        {
+          "case": "fused_rows_resident",
+          "command_count": 26,
+          "command_bytes": 136,
+          "mvm_count": 8,
+          "macs": 1024,
+          "core_cycles": 576,
+          "scratch_cycles": 320,
+          "decode_cycles": 26,
+          "load_bytes": 128,
+          "store_bytes": 256,
+          "device_cycles": 922,
+          "time_us": 61.22
+        },
+        {
+          "case": "reload_weights",
+          "command_count": 33,
+          "command_bytes": 164,
+          "mvm_count": 8,
+          "macs": 1024,
+          "core_cycles": 576,
+          "scratch_cycles": 544,
+          "decode_cycles": 33,
+          "load_bytes": 576,
+          "store_bytes": 256,
+          "device_cycles": 1153,
+          "time_us": 111.13
+        },
+        {
+          "case": "unrolled_row_groups_same_data",
+          "command_count": 50,
+          "command_bytes": 328,
+          "mvm_count": 32,
+          "macs": 1024,
+          "core_cycles": 576,
+          "scratch_cycles": 320,
+          "decode_cycles": 50,
+          "load_bytes": 128,
+          "store_bytes": 256,
+          "device_cycles": 946,
+          "time_us": 80.66
+        },
+        {
+          "case": "device_accumulate",
+          "command_count": 417,
+          "command_bytes": 2180,
+          "mvm_count": 128,
+          "macs": 16384,
+          "core_cycles": 8448,
+          "scratch_cycles": 7168,
+          "decode_cycles": 417,
+          "load_bytes": 12288,
+          "store_bytes": 256,
+          "device_cycles": 16033,
+          "time_us": 1632.73
+        },
+        {
+          "case": "host_partial_sum_same_chunks",
+          "command_count": 513,
+          "command_bytes": 2564,
+          "mvm_count": 128,
+          "macs": 16384,
+          "core_cycles": 8448,
+          "scratch_cycles": 7168,
+          "decode_cycles": 513,
+          "load_bytes": 12288,
+          "store_bytes": 1024,
+          "device_cycles": 16129,
+          "time_us": 1748.8899999999999
+        }
+      ],
+      "all_passed": true,
+      "scenario": "100MHz,10MB/s,zero host dispatch,zero host sum cost"
+    },
+    "device": {
+      "passed": true,
+      "configurations": 72,
+      "planner": "Existing resource+link objective selects each executable candidate; measured device cycles are separate",
+      "assumptions": "No external stalls; all compiler/ISA integer results and analytical full-device cycle counts checked",
+      "physical_fmax_validated": false,
+      "source_sha256": {
+        "cpp/tinylpu_device.cpp": "a6a1fa04b0e33bb7da644f6036d08f79b72876f5d4bc5be52e821248442cf0cd",
+        "compiler/tinylpu_compiler/device.py": "839ca751de35817c4c5589f1de9be793cabceff1d8ef3f99859351e15cdef89b",
+        "scripts/run_device_performance.py": "a09874c31bebcbefb695b33a635705106552722b72ac8dbe2dd496509a0f6a3f"
+      },
+      "note": "Compare cycles within identical m/k/frames. Runtime wall time is simulation, not hardware latency."
+    },
+    "esl_rows": 162,
+    "operator_rows": 1602,
+    "precision_rows": 539
+  },
+  "source_unchanged": {
+    "model_compiler_rtl_files": 54,
+    "report_changes": "English string literals only"
+  },
+  "physical_evidence": "Retained source-bound v0.2.0 receipts, not rerun",
+  "wheel": {
+    "filename": "tinylpu-0.2.1-py3-none-any.whl",
+    "sha256": "a17acca610a0220da8657f2c11c848b2588d5a37ff746b0ea41ebcff6749e8d1",
+    "build": "PASS"
+  },
+  "published_reports": "Compact results; absolute repository paths normalized after execution",
+  "github_ci": "Tracked separately after repository publication"
+}

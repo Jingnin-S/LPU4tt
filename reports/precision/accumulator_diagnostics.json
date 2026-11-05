@@ -1,0 +1,93 @@
+[
+  {
+    "operand_dtype": "int4",
+    "accumulator_bits": 16,
+    "k": 64,
+    "result": 4096,
+    "mathematical_result": 4096,
+    "integer_overflow_events": 0,
+    "nonfinite_product_events": 0,
+    "nonfinite_accumulator_events": 0,
+    "required_signed_bits": 14,
+    "maximum": 4096,
+    "minimum": -3584
+  },
+  {
+    "operand_dtype": "int4",
+    "accumulator_bits": 16,
+    "k": 256,
+    "result": 16384,
+    "mathematical_result": 16384,
+    "integer_overflow_events": 0,
+    "nonfinite_product_events": 0,
+    "nonfinite_accumulator_events": 0,
+    "required_signed_bits": 16,
+    "maximum": 16384,
+    "minimum": -14336
+  },
+  {
+    "operand_dtype": "int4",
+    "accumulator_bits": 16,
+    "k": 512,
+    "result": -32768,
+    "mathematical_result": 32768,
+    "integer_overflow_events": 1,
+    "nonfinite_product_events": 0,
+    "nonfinite_accumulator_events": 0,
+    "required_signed_bits": 17,
+    "maximum": 32768,
+    "minimum": -28672
+  },
+  {
+    "operand_dtype": "int4",
+    "accumulator_bits": 32,
+    "k": 512,
+    "result": 32768,
+    "mathematical_result": 32768,
+    "integer_overflow_events": 0,
+    "nonfinite_product_events": 0,
+    "nonfinite_accumulator_events": 0,
+    "required_signed_bits": 17,
+    "maximum": 32768,
+    "minimum": -28672
+  },
+  {
+    "operand_dtype": "int8",
+    "accumulator_bits": 16,
+    "k": 2,
+    "result": -32768,
+    "mathematical_result": 32768,
+    "integer_overflow_events": 1,
+    "nonfinite_product_events": 0,
+    "nonfinite_accumulator_events": 0,
+    "required_signed_bits": 17,
+    "maximum": 32768,
+    "minimum": -32512
+  },
+  {
+    "operand_dtype": "int8",
+    "accumulator_bits": 32,
+    "k": 64,
+    "result": 1048576,
+    "mathematical_result": 1048576,
+    "integer_overflow_events": 0,
+    "nonfinite_product_events": 0,
+    "nonfinite_accumulator_events": 0,
+    "required_signed_bits": 22,
+    "maximum": 1048576,
+    "minimum": -1040384
+  },
+  {
+    "operand_dtype": "int8",
+    "accumulator_bits": 32,
+    "k": 4096,
+    "result": 67108864,
+    "mathematical_result": 67108864,
+    "integer_overflow_events": 0,
+    "nonfinite_product_events": 0,
+    "nonfinite_accumulator_events": 0,
+    "required_signed_bits": 28,
+    "maximum": 67108864,
+    "minimum": -66584576
+  }
+]

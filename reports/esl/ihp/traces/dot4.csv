@@ -1,0 +1,13 @@
+cycle,phase,action,row,index,commit_row,commit_index,issue,commit,product,issue_product,commit_product,acc,busy_before,busy,done
+0,idle,write_w,-1,0,-1,-1,0,0,0,0,0,0,0,0,0
+1,idle,write_w,-1,1,-1,-1,0,0,0,0,0,0,0,0,0
+2,idle,write_a,-1,0,-1,-1,0,0,0,0,0,0,0,0,0
+3,idle,write_a,-1,1,-1,-1,0,0,0,0,0,0,0,0,0
+4,setup,start,-1,-1,-1,-1,0,0,0,0,0,0,0,1,0
+5,compute,compute,0,0,-1,-1,1,0,7,7,0,0,1,1,0
+6,compute,compute,0,1,0,0,1,1,7,16,7,7,1,1,0
+7,compute,compute,0,2,0,1,1,1,16,-3,16,23,1,1,0
+8,compute,compute,0,3,0,2,1,1,-3,-8,-3,20,1,1,0
+9,compute,compute,0,3,0,3,0,1,-8,0,-8,12,1,0,1
+10,read,read_result,-1,0,-1,-1,0,0,0,0,0,0,0,0,1
+11,read,read_result,-1,1,-1,-1,0,0,0,0,0,0,0,0,1

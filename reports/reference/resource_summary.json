@@ -1,0 +1,9 @@
+{
+  "executed_configurations": 120,
+  "search_candidates": 4596,
+  "factors": 2160,
+  "all_passed": true,
+  "physical_fmax_validated": false,
+  "numeric_engine": "independent existing ISA C++",
+  "timing_engine": "new C++ byte-bank resource analyzer"
+}

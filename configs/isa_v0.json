@@ -1,0 +1,18 @@
+{
+  "isa": "tinylpu",
+  "version": "0.1",
+  "status": "software-validated specification; RTL/PPA pending",
+  "encoding": "mixed32_64",
+  "opcodes": {"LOAD": 1, "STORE": 2, "MVM": 3, "END": 15},
+  "instruction_bytes": {"LOAD": 4, "STORE": 4, "MVM": 8, "END": 4},
+  "mvm_bytes": ["opcode", "flags", "a_byte_address", "w_byte_address", "y_byte_address", "rows_minus_one", "k_minus_one", "w_stride_bytes"],
+  "flags": {"accumulate_bit": 0, "sat16_bit": 1, "format_bits": [2, 3], "reserved_zero_mask": 240},
+  "formats": {"0": "signed_int4_A_signed_int4_W", "1": "optional_signed_int8_A_signed_int8_W", "2": "reserved_illegal", "3": "reserved_illegal"},
+  "base_profile": {"input_bits": 4, "accumulator_bits": 32, "raw_output_bits": 32, "sat_output_bits": 16, "enable_int8": false},
+  "implementation_probe": {"scratch_bytes": 128, "lanes": 2, "depth": 3, "memory_byte_bw": 2, "physical_performance_validated": false},
+  "instruction_limits": {"address_bits": 8, "transfer_bytes": [1, 256], "rows": [1, 16], "k": [1, 64], "stride_bytes": [1, 255]},
+  "compiler_limits": {"global_rows": [1, 64], "global_k": [1, 4096], "frames": [1, 32]},
+  "arithmetic": {"accumulator_overflow": "twos_complement_wrap_per_mac", "sat16": "clamp_at_final_output_only", "int4_packing": "low_index_low_nibble", "result_endianness": "little"},
+  "execution": "sequential streaming; no instruction RAM or asynchronous overlap",
+  "configuration_transport": "out_of_band target metadata; this JSON is not a wire header"
+}

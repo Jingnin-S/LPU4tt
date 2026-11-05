@@ -1,0 +1,173 @@
+{
+  "passed": true,
+  "candidate": "physical/work/lpu_validate64_eco15_100m_ss",
+  "profile": {
+    "source_sha256": {
+      "tinylpu_device_memory.sv": "d8ba9b8476fa39c75ff73b94a09b3eeb598e1b4115c517bc5073397ae7b78ec2",
+      "tinylpu_device.sv": "9fb9d085a29c4ee30b046583b4a6332206dbe13689f40644f4ae78160d5bd246",
+      "tt_um_tinylpu_v1.sv": "7c55235ca496cb702e9afc19aab99af1aaac038c043b1e83a4249a198260ca7c"
+    },
+    "base": "lpu_tt_um",
+    "clock_period_ns": 10.0,
+    "clock_hz": 100000000,
+    "all_corners_pnr": false,
+    "representative_corners_pnr": false,
+    "ss_corner_pnr": true,
+    "post_grt_optimization": true,
+    "speed_cells": true,
+    "strong_buffers": true,
+    "grt_margins": {
+      "slew_pct": 50.0,
+      "cap_pct": 50.0,
+      "setup_ns": 3.0
+    },
+    "clockgate_min_width": 0,
+    "tiles": "4x2",
+    "resource_limits": {
+      "max_rss_gib": 12,
+      "max_seconds": 3600
+    },
+    "capacity": 64,
+    "lanes": 1,
+    "signoff_passed": false,
+    "parent_candidate": "lpu_validate64_buf4_guard_100m_ss",
+    "checkpoint": "runs/wokwi/44-openroad-resizertimingpostgrt/state_out.json",
+    "extra_flow_step": "OpenROAD.TinyLpuLateRepair",
+    "late_margins": {
+      "slew_pct": 60,
+      "cap_pct": 50
+    },
+    "repair_mode": "targeted_buffer",
+    "eco_driver_pins": [
+      "_4337_/Y",
+      "_4333_/Y",
+      "_4170_/Y",
+      "clone1536/X",
+      "_7348_/Y",
+      "_8213_/Q",
+      "_3817_/X",
+      "_3942_/Y",
+      "_7360_/Y",
+      "_7132_/Y",
+      "_7345_/Y",
+      "_4178_/Y",
+      "_7340_/X",
+      "_6671_/Y",
+      "_8219_/Q"
+    ],
+    "implementation_sha256": {
+      "src/config.json": "852600de26a30e324476c37dd0285e0f4a505583a2754d20e243343684bb9291",
+      "src/config_merged.json": "71d6861b5d77f23cd90f5d53bed5f16510b41906c949987cce3b9f8e77829808",
+      "flow_driver.py": "2e94197c394c6fb023b609169a9161424e8403932f9c37e0bb76099c9ed30654",
+      "initial_state.json": "4b5d999dfb38e50f8c932a42b5e8e92a4d1c5aae241d51354a282564a034855d",
+      "targeted_eco.tcl": "a21610cab43d34382c4594cbe7c59c5ceab654d944baf7d5f8099e0cadeb21df"
+    }
+  },
+  "period_ns": 10.0,
+  "checks": {
+    "design__inferred_latch__count": 0,
+    "design__instance_unmapped__count": 0,
+    "route__drc_errors": 0,
+    "magic__drc_error__count": 0,
+    "design__lvs_error__count": 0,
+    "antenna__violating__nets": 0,
+    "antenna__violating__pins": 0,
+    "magic__illegal_overlap__count": 0,
+    "design__critical_disconnected_pin__count": 0
+  },
+  "corners": {
+    "nom_tt_025C_1v80": {
+      "timing__setup__ws": 3.471372176855424,
+      "timing__hold__ws": 0.3329004943712246,
+      "design__max_slew_violation__count": 0,
+      "design__max_cap_violation__count": 0
+    },
+    "nom_ss_100C_1v60": {
+      "timing__setup__ws": 1.3188002174704923,
+      "timing__hold__ws": 0.5540905668898845,
+      "design__max_slew_violation__count": 0,
+      "design__max_cap_violation__count": 0
+    },
+    "nom_ff_n40C_1v95": {
+      "timing__setup__ws": 4.220211854983996,
+      "timing__hold__ws": 0.10956791339904892,
+      "design__max_slew_violation__count": 0,
+      "design__max_cap_violation__count": 0
+    },
+    "min_tt_025C_1v80": {
+      "timing__setup__ws": 3.5599737498860633,
+      "timing__hold__ws": 0.3280057429618242,
+      "design__max_slew_violation__count": 0,
+      "design__max_cap_violation__count": 0
+    },
+    "min_ss_100C_1v60": {
+      "timing__setup__ws": 1.5901183042586269,
+      "timing__hold__ws": 0.6196356936268422,
+      "design__max_slew_violation__count": 0,
+      "design__max_cap_violation__count": 0
+    },
+    "min_ff_n40C_1v95": {
+      "timing__setup__ws": 4.2805116218704615,
+      "timing__hold__ws": 0.10758788608978219,
+      "design__max_slew_violation__count": 0,
+      "design__max_cap_violation__count": 0
+    },
+    "max_tt_025C_1v80": {
+      "timing__setup__ws": 3.3746557614636914,
+      "timing__hold__ws": 0.33967807306133685,
+      "design__max_slew_violation__count": 0,
+      "design__max_cap_violation__count": 0
+    },
+    "max_ss_100C_1v60": {
+      "timing__setup__ws": 1.094557364614682,
+      "timing__hold__ws": 0.47740235338422077,
+      "design__max_slew_violation__count": 0,
+      "design__max_cap_violation__count": 0
+    },
+    "max_ff_n40C_1v95": {
+      "timing__setup__ws": 4.1481228515102195,
+      "timing__hold__ws": 0.11222506575018494,
+      "design__max_slew_violation__count": 0,
+      "design__max_cap_violation__count": 0
+    }
+  },
+  "frozen_candidate_sha256": "3386504e541d7619f876d38db66c56a190ecb40f2acc928bdf7798524815519d",
+  "frozen_profile_note": "The profile signoff_passed field is the pre-run placeholder; this report passed/failures is the qualification result.",
+  "qualification_policy": "Finite nonnegative setup/hold and zero slew/cap in all nine corners; listed geometry/connectivity checks, exact RTL, routed pin-only and complete cycle-vector GL, and bound 15-check TT precheck. Other diagnostics are reported separately.",
+  "diagnostics": {
+    "max_fanout_violations_by_corner": {
+      "nom_tt_025C_1v80": 76,
+      "nom_ss_100C_1v60": 76,
+      "nom_ff_n40C_1v95": 76,
+      "min_tt_025C_1v80": 76,
+      "min_ss_100C_1v60": 76,
+      "min_ff_n40C_1v95": 76,
+      "max_tt_025C_1v80": 76,
+      "max_ss_100C_1v60": 76,
+      "max_ff_n40C_1v95": 76
+    }
+  },
+  "receipt_sha256": {
+    "gate": "8c2da507d633e2556e9acd1a37813961c46571b35734632c8306be07d28b08c1",
+    "gate_vectors": "0bc53158aa23e68c769e14a00a6cde476c7f2d588179219b2309aae08bc2d728",
+    "precheck": "b5538ae3d04eb5ce9d1cb93e41b9a20284ddb0a31909f4fc07ca8db7372272a7"
+  },
+  "area": {
+    "design__core__area": 149183,
+    "design__die__area": 154113,
+    "design__instance__area__stdcell": 79714,
+    "design__instance__utilization__stdcell": 0.534336
+  },
+  "source_sha256": {
+    "tinylpu_device_memory.sv": "d8ba9b8476fa39c75ff73b94a09b3eeb598e1b4115c517bc5073397ae7b78ec2",
+    "tinylpu_device.sv": "9fb9d085a29c4ee30b046583b4a6332206dbe13689f40644f4ae78160d5bd246",
+    "tt_um_tinylpu_v1.sv": "7c55235ca496cb702e9afc19aab99af1aaac038c043b1e83a4249a198260ca7c"
+  },
+  "artifacts_sha256": {
+    "tt_um_tinylpu_v1.gds": "e4d659cc48c178a87ef8a9208e063639e1cb4a49575dd6a993b7d2f29c230b82",
+    "tt_um_tinylpu_v1.pnl.v": "b4b6ac66ad8762bda36dd5ca712a4e42165ca8af84f2e28f22c395c9d03c70b0",
+    "tt_um_tinylpu_v1.lef": "da8e2d5f53c0c93f0ec4ef37827ede817d04ed0d138b227c229275190f780af9"
+  },
+  "failures": [],
+  "scope": "User macro engineering checks, not chip integration, board rating or shuttle acceptance"
+}

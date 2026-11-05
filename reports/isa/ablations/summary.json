@@ -1,0 +1,77 @@
+{
+  "executed_streams": 5,
+  "rows": [
+    {
+      "case": "fused_rows_resident",
+      "command_count": 26,
+      "command_bytes": 136,
+      "mvm_count": 8,
+      "macs": 1024,
+      "core_cycles": 576,
+      "scratch_cycles": 320,
+      "decode_cycles": 26,
+      "load_bytes": 128,
+      "store_bytes": 256,
+      "device_cycles": 922,
+      "time_us": 61.22
+    },
+    {
+      "case": "reload_weights",
+      "command_count": 33,
+      "command_bytes": 164,
+      "mvm_count": 8,
+      "macs": 1024,
+      "core_cycles": 576,
+      "scratch_cycles": 544,
+      "decode_cycles": 33,
+      "load_bytes": 576,
+      "store_bytes": 256,
+      "device_cycles": 1153,
+      "time_us": 111.13
+    },
+    {
+      "case": "unrolled_row_groups_same_data",
+      "command_count": 50,
+      "command_bytes": 328,
+      "mvm_count": 32,
+      "macs": 1024,
+      "core_cycles": 576,
+      "scratch_cycles": 320,
+      "decode_cycles": 50,
+      "load_bytes": 128,
+      "store_bytes": 256,
+      "device_cycles": 946,
+      "time_us": 80.66
+    },
+    {
+      "case": "device_accumulate",
+      "command_count": 417,
+      "command_bytes": 2180,
+      "mvm_count": 128,
+      "macs": 16384,
+      "core_cycles": 8448,
+      "scratch_cycles": 7168,
+      "decode_cycles": 417,
+      "load_bytes": 12288,
+      "store_bytes": 256,
+      "device_cycles": 16033,
+      "time_us": 1632.73
+    },
+    {
+      "case": "host_partial_sum_same_chunks",
+      "command_count": 513,
+      "command_bytes": 2564,
+      "mvm_count": 128,
+      "macs": 16384,
+      "core_cycles": 8448,
+      "scratch_cycles": 7168,
+      "decode_cycles": 513,
+      "load_bytes": 12288,
+      "store_bytes": 1024,
+      "device_cycles": 16129,
+      "time_us": 1748.8899999999999
+    }
+  ],
+  "all_passed": true,
+  "scenario": "100MHz,10MB/s,zero host dispatch,zero host sum cost"
+}

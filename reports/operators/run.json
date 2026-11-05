@@ -1,0 +1,191 @@
+{
+  "config": {
+    "schema_version": 1,
+    "core_frequency_mhz": [
+      50,
+      100,
+      200
+    ],
+    "host_payload_MBps": [
+      5,
+      25
+    ],
+    "integer_cases": [
+      {
+        "op": "dot",
+        "shape": [
+          16
+        ]
+      },
+      {
+        "op": "gemv",
+        "shape": [
+          4,
+          16
+        ]
+      },
+      {
+        "op": "gemm",
+        "shape": [
+          4,
+          8,
+          4
+        ]
+      },
+      {
+        "op": "conv1d",
+        "shape": [
+          10,
+          2,
+          4,
+          3
+        ]
+      },
+      {
+        "op": "conv2d",
+        "shape": [
+          5,
+          5,
+          2,
+          4,
+          3,
+          3
+        ]
+      },
+      {
+        "op": "dwconv2d",
+        "shape": [
+          5,
+          5,
+          4,
+          3,
+          3
+        ]
+      },
+      {
+        "op": "fir",
+        "shape": [
+          16,
+          8
+        ]
+      },
+      {
+        "op": "add",
+        "shape": [
+          16
+        ]
+      },
+      {
+        "op": "mul",
+        "shape": [
+          16
+        ]
+      },
+      {
+        "op": "relu",
+        "shape": [
+          16
+        ]
+      },
+      {
+        "op": "requant",
+        "shape": [
+          16
+        ]
+      },
+      {
+        "op": "reduce_sum",
+        "shape": [
+          16
+        ]
+      },
+      {
+        "op": "reduce_max",
+        "shape": [
+          16
+        ]
+      },
+      {
+        "op": "maxpool2d",
+        "shape": [
+          6,
+          6,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "op": "transpose",
+        "shape": [
+          4,
+          8
+        ]
+      }
+    ],
+    "integer_resources": [
+      {
+        "id": "p1_a1",
+        "lanes": 1,
+        "depth": 3,
+        "a_ports": 1,
+        "b_ports": 1
+      },
+      {
+        "id": "p2_a1",
+        "lanes": 2,
+        "depth": 3,
+        "a_ports": 1,
+        "b_ports": 2
+      },
+      {
+        "id": "p2_a2",
+        "lanes": 2,
+        "depth": 3,
+        "a_ports": 2,
+        "b_ports": 2
+      },
+      {
+        "id": "p4_a1",
+        "lanes": 4,
+        "depth": 3,
+        "a_ports": 1,
+        "b_ports": 4
+      },
+      {
+        "id": "p4_a4",
+        "lanes": 4,
+        "depth": 3,
+        "a_ports": 4,
+        "b_ports": 4
+      }
+    ],
+    "nonlinear_ops": [
+      "softmax",
+      "layernorm",
+      "rmsnorm",
+      "gelu",
+      "silu",
+      "sigmoid",
+      "tanh"
+    ],
+    "nonlinear_rows": 2,
+    "nonlinear_cols": [
+      8,
+      32
+    ],
+    "sfu_scale": [
+      1,
+      2
+    ],
+    "nonlinear_model": "binary64 reference, one pipelined ALU II=1 plus one serialized SFU; primitive latencies are assumptions",
+    "physical_performance_validated": false
+  },
+  "rows": 1602,
+  "samples": 103,
+  "integer_model": "<repo>/build_esl/tinylpu_operators",
+  "nonlinear_model": "<repo>/build_esl/tinylpu_nonlinear",
+  "physical_performance_validated": false
+}

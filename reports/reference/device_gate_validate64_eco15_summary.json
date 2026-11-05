@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "stage": "routed",
+  "unit_delay_ns": 1,
+  "netlist": "physical/work/lpu_validate64_eco15_100m_ss/runs/wokwi/final/pnl/tt_um_tinylpu_v1.pnl.v",
+  "netlist_sha256": "b4b6ac66ad8762bda36dd5ca712a4e42165ca8af84f2e28f22c395c9d03c70b0",
+  "test_sha256": "1dfa0c2c478a56f5a749eceb4c38bcca66fb7220342b43420da1a58cfd1753fd",
+  "wrapper_sha256": "ba08335c42710d02e4a84d354c56f2c17b00ba3df456b3ae7180670020efa0e1",
+  "test_cases": 1,
+  "failures": [],
+  "scope": "routed gate netlist functional simulation with UNIT_DELAY; STA/electrical results separate"
+}

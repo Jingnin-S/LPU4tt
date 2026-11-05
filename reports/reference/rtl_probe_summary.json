@@ -1,0 +1,857 @@
+{
+  "library": "gscl45nm typical,1.1V,27C",
+  "wire_assumption": "unrouted/no parasitics",
+  "area_scope": "native arrays or standalone MAC; excludes controller/validity/gather routing",
+  "area_units": "reported library area units; not Tiny Tapeout target area",
+  "source_sha256": {
+    "rtl/tinylpu_memory_mac_probe.sv": "d400105cf68a5ac562dec71dde44f34b7589cbb12c8915f7977a6b75208dbc9c",
+    "rtl/tb_tinylpu_memory_mac_probe.sv": "b61a17af95cf38fe9840a71836369ef56bb4a7a4f76ba3186f256e886c48e57f"
+  },
+  "generic_cells": [
+    {
+      "kind": "flat",
+      "parameter": 32,
+      "extra": 1,
+      "label": "flat_32_1",
+      "cell_summary": {
+        "cell_total": 671,
+        "dff": 264,
+        "mux": 222,
+        "logic": 185
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 32,
+      "extra": 2,
+      "label": "flat_32_2",
+      "cell_summary": {
+        "cell_total": 996,
+        "dff": 272,
+        "mux": 437,
+        "logic": 287
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 32,
+      "extra": 3,
+      "label": "flat_32_3",
+      "cell_summary": {
+        "cell_total": 1303,
+        "dff": 280,
+        "mux": 661,
+        "logic": 362
+      }
+    },
+    {
+      "kind": "bank",
+      "parameter": 32,
+      "extra": 2,
+      "label": "bank_32_2",
+      "cell_summary": {
+        "cell_total": 660,
+        "dff": 272,
+        "mux": 240,
+        "logic": 148
+      }
+    },
+    {
+      "kind": "bank",
+      "parameter": 32,
+      "extra": 4,
+      "label": "bank_32_4",
+      "cell_summary": {
+        "cell_total": 669,
+        "dff": 288,
+        "mux": 224,
+        "logic": 157
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 64,
+      "extra": 1,
+      "label": "flat_64_1",
+      "cell_summary": {
+        "cell_total": 1481,
+        "dff": 520,
+        "mux": 368,
+        "logic": 593
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 64,
+      "extra": 2,
+      "label": "flat_64_2",
+      "cell_summary": {
+        "cell_total": 2252,
+        "dff": 528,
+        "mux": 745,
+        "logic": 979
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 64,
+      "extra": 3,
+      "label": "flat_64_3",
+      "cell_summary": {
+        "cell_total": 3099,
+        "dff": 536,
+        "mux": 1083,
+        "logic": 1480
+      }
+    },
+    {
+      "kind": "bank",
+      "parameter": 64,
+      "extra": 2,
+      "label": "bank_64_2",
+      "cell_summary": {
+        "cell_total": 1388,
+        "dff": 528,
+        "mux": 443,
+        "logic": 417
+      }
+    },
+    {
+      "kind": "bank",
+      "parameter": 64,
+      "extra": 4,
+      "label": "bank_64_4",
+      "cell_summary": {
+        "cell_total": 1285,
+        "dff": 544,
+        "mux": 480,
+        "logic": 261
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 96,
+      "extra": 1,
+      "label": "flat_96_1",
+      "cell_summary": {
+        "cell_total": 2089,
+        "dff": 776,
+        "mux": 617,
+        "logic": 696
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 96,
+      "extra": 2,
+      "label": "flat_96_2",
+      "cell_summary": {
+        "cell_total": 3153,
+        "dff": 784,
+        "mux": 1234,
+        "logic": 1135
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 96,
+      "extra": 3,
+      "label": "flat_96_3",
+      "cell_summary": {
+        "cell_total": 4217,
+        "dff": 792,
+        "mux": 1851,
+        "logic": 1574
+      }
+    },
+    {
+      "kind": "bank",
+      "parameter": 96,
+      "extra": 2,
+      "label": "bank_96_2",
+      "cell_summary": {
+        "cell_total": 2524,
+        "dff": 784,
+        "mux": 924,
+        "logic": 816
+      }
+    },
+    {
+      "kind": "bank",
+      "parameter": 96,
+      "extra": 4,
+      "label": "bank_96_4",
+      "cell_summary": {
+        "cell_total": 2671,
+        "dff": 800,
+        "mux": 1270,
+        "logic": 601
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 128,
+      "extra": 1,
+      "label": "flat_128_1",
+      "cell_summary": {
+        "cell_total": 2809,
+        "dff": 1032,
+        "mux": 800,
+        "logic": 977
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 128,
+      "extra": 2,
+      "label": "flat_128_2",
+      "cell_summary": {
+        "cell_total": 4377,
+        "dff": 1040,
+        "mux": 1547,
+        "logic": 1790
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 128,
+      "extra": 3,
+      "label": "flat_128_3",
+      "cell_summary": {
+        "cell_total": 5761,
+        "dff": 1048,
+        "mux": 2385,
+        "logic": 2328
+      }
+    },
+    {
+      "kind": "bank",
+      "parameter": 128,
+      "extra": 2,
+      "label": "bank_128_2",
+      "cell_summary": {
+        "cell_total": 3001,
+        "dff": 1040,
+        "mux": 763,
+        "logic": 1198
+      }
+    },
+    {
+      "kind": "bank",
+      "parameter": 128,
+      "extra": 4,
+      "label": "bank_128_4",
+      "cell_summary": {
+        "cell_total": 2731,
+        "dff": 1056,
+        "mux": 889,
+        "logic": 786
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 192,
+      "extra": 1,
+      "label": "flat_192_1",
+      "cell_summary": {
+        "cell_total": 4333,
+        "dff": 1544,
+        "mux": 1135,
+        "logic": 1654
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 192,
+      "extra": 2,
+      "label": "flat_192_2",
+      "cell_summary": {
+        "cell_total": 6666,
+        "dff": 1552,
+        "mux": 2270,
+        "logic": 2844
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 192,
+      "extra": 3,
+      "label": "flat_192_3",
+      "cell_summary": {
+        "cell_total": 8999,
+        "dff": 1560,
+        "mux": 3405,
+        "logic": 4034
+      }
+    },
+    {
+      "kind": "bank",
+      "parameter": 192,
+      "extra": 2,
+      "label": "bank_192_2",
+      "cell_summary": {
+        "cell_total": 5040,
+        "dff": 1552,
+        "mux": 1837,
+        "logic": 1651
+      }
+    },
+    {
+      "kind": "bank",
+      "parameter": 192,
+      "extra": 4,
+      "label": "bank_192_4",
+      "cell_summary": {
+        "cell_total": 5782,
+        "dff": 1568,
+        "mux": 2417,
+        "logic": 1797
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 256,
+      "extra": 1,
+      "label": "flat_256_1",
+      "cell_summary": {
+        "cell_total": 5799,
+        "dff": 2056,
+        "mux": 1489,
+        "logic": 2254
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 256,
+      "extra": 2,
+      "label": "flat_256_2",
+      "cell_summary": {
+        "cell_total": 9038,
+        "dff": 2064,
+        "mux": 2937,
+        "logic": 4037
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 256,
+      "extra": 3,
+      "label": "flat_256_3",
+      "cell_summary": {
+        "cell_total": 11977,
+        "dff": 2072,
+        "mux": 4535,
+        "logic": 5370
+      }
+    },
+    {
+      "kind": "bank",
+      "parameter": 256,
+      "extra": 2,
+      "label": "bank_256_2",
+      "cell_summary": {
+        "cell_total": 5942,
+        "dff": 2064,
+        "mux": 1540,
+        "logic": 2338
+      }
+    },
+    {
+      "kind": "bank",
+      "parameter": 256,
+      "extra": 4,
+      "label": "bank_256_4",
+      "cell_summary": {
+        "cell_total": 6006,
+        "dff": 2080,
+        "mux": 1505,
+        "logic": 2421
+      }
+    },
+    {
+      "kind": "mac",
+      "parameter": 1,
+      "extra": 16,
+      "label": "mac_1_16",
+      "cell_summary": {
+        "cell_total": 244,
+        "dff": 37,
+        "mux": 2,
+        "logic": 205
+      }
+    },
+    {
+      "kind": "mac",
+      "parameter": 1,
+      "extra": 32,
+      "label": "mac_1_32",
+      "cell_summary": {
+        "cell_total": 340,
+        "dff": 53,
+        "mux": 2,
+        "logic": 285
+      }
+    },
+    {
+      "kind": "mac",
+      "parameter": 2,
+      "extra": 16,
+      "label": "mac_2_16",
+      "cell_summary": {
+        "cell_total": 482,
+        "dff": 69,
+        "mux": 3,
+        "logic": 410
+      }
+    },
+    {
+      "kind": "mac",
+      "parameter": 2,
+      "extra": 32,
+      "label": "mac_2_32",
+      "cell_summary": {
+        "cell_total": 674,
+        "dff": 101,
+        "mux": 3,
+        "logic": 570
+      }
+    },
+    {
+      "kind": "mac",
+      "parameter": 4,
+      "extra": 16,
+      "label": "mac_4_16",
+      "cell_summary": {
+        "cell_total": 959,
+        "dff": 133,
+        "mux": 6,
+        "logic": 820
+      }
+    },
+    {
+      "kind": "mac",
+      "parameter": 4,
+      "extra": 32,
+      "label": "mac_4_32",
+      "cell_summary": {
+        "cell_total": 1343,
+        "dff": 197,
+        "mux": 6,
+        "logic": 1140
+      }
+    }
+  ],
+  "mapped_cells": [
+    {
+      "kind": "flat",
+      "parameter": 64,
+      "extra": 1,
+      "label": "flat_64_1",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "2691",
+        "combinational_area": "4983.965922",
+        "noncombinational_area": "4148.611908",
+        "total_cell_area": "9132.577830"
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 64,
+      "extra": 2,
+      "label": "flat_64_2",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "3629",
+        "combinational_area": "7205.632069",
+        "noncombinational_area": "4212.436707",
+        "total_cell_area": "11418.068775"
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 64,
+      "extra": 3,
+      "label": "flat_64_3",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "4543",
+        "combinational_area": "9393.508616",
+        "noncombinational_area": "4276.261505",
+        "total_cell_area": "13669.770121"
+      }
+    },
+    {
+      "kind": "bank",
+      "parameter": 64,
+      "extra": 2,
+      "label": "bank_64_2",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "2686",
+        "combinational_area": "4961.439522",
+        "noncombinational_area": "4212.436707",
+        "total_cell_area": "9173.876229"
+      }
+    },
+    {
+      "kind": "bank",
+      "parameter": 64,
+      "extra": 4,
+      "label": "bank_64_4",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "2777",
+        "combinational_area": "5085.334718",
+        "noncombinational_area": "4340.086304",
+        "total_cell_area": "9425.421022"
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 128,
+      "extra": 1,
+      "label": "flat_128_1",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "5252",
+        "combinational_area": "9734.689748",
+        "noncombinational_area": "8233.399017",
+        "total_cell_area": "17968.088766"
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 128,
+      "extra": 2,
+      "label": "flat_128_2",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "7045",
+        "combinational_area": "14023.622346",
+        "noncombinational_area": "8297.223816",
+        "total_cell_area": "22320.846162"
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 128,
+      "extra": 3,
+      "label": "flat_128_3",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "8806",
+        "combinational_area": "18259.524046",
+        "noncombinational_area": "8361.048615",
+        "total_cell_area": "26620.572661"
+      }
+    },
+    {
+      "kind": "bank",
+      "parameter": 128,
+      "extra": 2,
+      "label": "bank_128_2",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "5294",
+        "combinational_area": "9851.545446",
+        "noncombinational_area": "8297.223816",
+        "total_cell_area": "18148.769262"
+      }
+    },
+    {
+      "kind": "bank",
+      "parameter": 128,
+      "extra": 4,
+      "label": "bank_128_4",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "5417",
+        "combinational_area": "9969.809042",
+        "noncombinational_area": "8424.873413",
+        "total_cell_area": "18394.682455"
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 192,
+      "extra": 1,
+      "label": "flat_192_1",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "8629",
+        "combinational_area": "15758.624468",
+        "noncombinational_area": "12318.186127",
+        "total_cell_area": "28076.810594"
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 192,
+      "extra": 2,
+      "label": "flat_192_2",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "10513",
+        "combinational_area": "20852.875877",
+        "noncombinational_area": "12382.010925",
+        "total_cell_area": "33234.886802"
+      }
+    },
+    {
+      "kind": "flat",
+      "parameter": 192,
+      "extra": 3,
+      "label": "flat_192_3",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "12393",
+        "combinational_area": "25937.741286",
+        "noncombinational_area": "12445.835724",
+        "total_cell_area": "38383.577010"
+      }
+    },
+    {
+      "kind": "bank",
+      "parameter": 192,
+      "extra": 2,
+      "label": "bank_192_2",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "8746",
+        "combinational_area": "16036.450058",
+        "noncombinational_area": "12382.010925",
+        "total_cell_area": "28418.460983"
+      }
+    },
+    {
+      "kind": "bank",
+      "parameter": 192,
+      "extra": 4,
+      "label": "bank_192_4",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "8669",
+        "combinational_area": "15817.286967",
+        "noncombinational_area": "12509.660522",
+        "total_cell_area": "28326.947489"
+      }
+    },
+    {
+      "kind": "mac",
+      "parameter": 1,
+      "extra": 16,
+      "label": "mac_1_16",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "203",
+        "combinational_area": "533.594102",
+        "noncombinational_area": "295.189693",
+        "total_cell_area": "828.783795"
+      }
+    },
+    {
+      "kind": "mac",
+      "parameter": 1,
+      "extra": 32,
+      "label": "mac_1_32",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "269",
+        "combinational_area": "751.349307",
+        "noncombinational_area": "422.839291",
+        "total_cell_area": "1174.188597"
+      }
+    },
+    {
+      "kind": "mac",
+      "parameter": 2,
+      "extra": 16,
+      "label": "mac_2_16",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "385",
+        "combinational_area": "1037.622304",
+        "noncombinational_area": "550.488888",
+        "total_cell_area": "1588.111192"
+      }
+    },
+    {
+      "kind": "mac",
+      "parameter": 2,
+      "extra": 32,
+      "label": "mac_2_32",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "517",
+        "combinational_area": "1473.132714",
+        "noncombinational_area": "805.788082",
+        "total_cell_area": "2278.920797"
+      }
+    },
+    {
+      "kind": "mac",
+      "parameter": 4,
+      "extra": 16,
+      "label": "mac_4_16",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "749",
+        "combinational_area": "2045.678709",
+        "noncombinational_area": "1061.087276",
+        "total_cell_area": "3106.765985"
+      }
+    },
+    {
+      "kind": "mac",
+      "parameter": 4,
+      "extra": 32,
+      "label": "mac_4_32",
+      "clock_period_ns": 10.0,
+      "area": {
+        "number_of_cells": "1013",
+        "combinational_area": "2917.638130",
+        "noncombinational_area": "1571.685665",
+        "total_cell_area": "4489.323795"
+      }
+    }
+  ],
+  "timing_checks": [
+    {
+      "label": "flat_128_3_10p0ns",
+      "kind": "flat",
+      "parameter": 128,
+      "extra": 3,
+      "period_ns": 10.0,
+      "worst_reported_slack_ns": "7.92",
+      "returncode": 0
+    },
+    {
+      "label": "bank_128_4_10p0ns",
+      "kind": "bank",
+      "parameter": 128,
+      "extra": 4,
+      "period_ns": 10.0,
+      "worst_reported_slack_ns": "8.82",
+      "returncode": 0
+    },
+    {
+      "label": "bank_192_4_10p0ns",
+      "kind": "bank",
+      "parameter": 192,
+      "extra": 4,
+      "period_ns": 10.0,
+      "worst_reported_slack_ns": "8.93",
+      "returncode": 0
+    },
+    {
+      "label": "mac_2_16_10p0ns",
+      "kind": "mac",
+      "parameter": 2,
+      "extra": 16,
+      "period_ns": 10.0,
+      "worst_reported_slack_ns": "8.49",
+      "returncode": 0
+    },
+    {
+      "label": "mac_2_32_10p0ns",
+      "kind": "mac",
+      "parameter": 2,
+      "extra": 32,
+      "period_ns": 10.0,
+      "worst_reported_slack_ns": "7.17",
+      "returncode": 0
+    },
+    {
+      "label": "flat_128_3_6p667ns",
+      "kind": "flat",
+      "parameter": 128,
+      "extra": 3,
+      "period_ns": 6.667,
+      "worst_reported_slack_ns": "4.58",
+      "returncode": 0
+    },
+    {
+      "label": "bank_128_4_6p667ns",
+      "kind": "bank",
+      "parameter": 128,
+      "extra": 4,
+      "period_ns": 6.667,
+      "worst_reported_slack_ns": "5.49",
+      "returncode": 0
+    },
+    {
+      "label": "bank_192_4_6p667ns",
+      "kind": "bank",
+      "parameter": 192,
+      "extra": 4,
+      "period_ns": 6.667,
+      "worst_reported_slack_ns": "5.60",
+      "returncode": 0
+    },
+    {
+      "label": "mac_2_16_6p667ns",
+      "kind": "mac",
+      "parameter": 2,
+      "extra": 16,
+      "period_ns": 6.667,
+      "worst_reported_slack_ns": "5.16",
+      "returncode": 0
+    },
+    {
+      "label": "mac_2_32_6p667ns",
+      "kind": "mac",
+      "parameter": 2,
+      "extra": 32,
+      "period_ns": 6.667,
+      "worst_reported_slack_ns": "3.84",
+      "returncode": 0
+    },
+    {
+      "label": "flat_128_3_5p0ns",
+      "kind": "flat",
+      "parameter": 128,
+      "extra": 3,
+      "period_ns": 5.0,
+      "worst_reported_slack_ns": "2.92",
+      "returncode": 0
+    },
+    {
+      "label": "bank_128_4_5p0ns",
+      "kind": "bank",
+      "parameter": 128,
+      "extra": 4,
+      "period_ns": 5.0,
+      "worst_reported_slack_ns": "3.82",
+      "returncode": 0
+    },
+    {
+      "label": "bank_192_4_5p0ns",
+      "kind": "bank",
+      "parameter": 192,
+      "extra": 4,
+      "period_ns": 5.0,
+      "worst_reported_slack_ns": "3.93",
+      "returncode": 0
+    },
+    {
+      "label": "mac_2_16_5p0ns",
+      "kind": "mac",
+      "parameter": 2,
+      "extra": 16,
+      "period_ns": 5.0,
+      "worst_reported_slack_ns": "3.49",
+      "returncode": 0
+    },
+    {
+      "label": "mac_2_32_5p0ns",
+      "kind": "mac",
+      "parameter": 2,
+      "extra": 32,
+      "period_ns": 5.0,
+      "worst_reported_slack_ns": "2.17",
+      "returncode": 0
+    }
+  ],
+  "physical_fmax_validated": false
+}

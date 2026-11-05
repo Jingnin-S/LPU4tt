@@ -1,0 +1,30 @@
+{
+  "release_version": "v0.2.0",
+  "profile": "validate64_eco15_100m_ss",
+  "capacity_bytes": 64,
+  "lanes": 1,
+  "clock_period_ns": 10.0,
+  "clock_hz": 100000000,
+  "tiles": "4x2",
+  "rtl": {
+    "tinylpu_device_memory.sv": "d8ba9b8476fa39c75ff73b94a09b3eeb598e1b4115c517bc5073397ae7b78ec2",
+    "tinylpu_device.sv": "9fb9d085a29c4ee30b046583b4a6332206dbe13689f40644f4ae78160d5bd246",
+    "tt_um_tinylpu_v1.sv": "7c55235ca496cb702e9afc19aab99af1aaac038c043b1e83a4249a198260ca7c"
+  },
+  "qualification": {
+    "report": "reports/reference/tt_validate64_eco15_signoff.json",
+    "worst_setup_slack_ns": 1.094557364614682,
+    "worst_hold_slack_ns": 0.10758788608978219,
+    "slew_violations_all_corners": 0,
+    "cap_violations_all_corners": 0,
+    "drc_errors": 0,
+    "lvs_errors": 0,
+    "antenna_violations": 0,
+    "gate_vector_cases": 67,
+    "gate_vector_cycles": 137327,
+    "precheck_checks": 15,
+    "precheck_passed": true,
+    "max_fanout_diagnostic_entries_per_corner": 76,
+    "scope_note": "Research qualification for the stated candidate; not a manufacturer/shuttle acceptance or full-chip signoff."
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "passed": true,
+  "simulator": "iverilog",
+  "profiles": [
+    {
+      "capacity": 64,
+      "lanes": 1,
+      "cases": 67,
+      "cycles": 137327,
+      "vectors_sha256": "b6be4820781ea26a8bee95e9931439f44269a474eccb188a5200e85edffe6f40",
+      "passed": true
+    },
+    {
+      "capacity": 64,
+      "lanes": 2,
+      "cases": 67,
+      "cycles": 125517,
+      "vectors_sha256": "96d3a87a7877c3d19465703aeb01ffc1ff7f617807c007e341f74eba84b7c33e",
+      "passed": true
+    },
+    {
+      "capacity": 128,
+      "lanes": 1,
+      "cases": 67,
+      "cycles": 137657,
+      "vectors_sha256": "bc1ddd1aae5a17f2bb0f1e51ddef508c3409cf0a4e97c0ab5c96470dcbc7dcb9",
+      "passed": true
+    },
+    {
+      "capacity": 128,
+      "lanes": 2,
+      "cases": 67,
+      "cycles": 126004,
+      "vectors_sha256": "ff62c7eb226c785d34cd18817237e837b6caf5039a9f97cfa9495ec0ff0b7077",
+      "passed": true
+    },
+    {
+      "capacity": 256,
+      "lanes": 1,
+      "cases": 67,
+      "cycles": 138431,
+      "vectors_sha256": "790f71c5a72457c4e732f44b05d71b6dbe5483b74dbcdcde9e3482f0da420b99",
+      "passed": true
+    },
+    {
+      "capacity": 256,
+      "lanes": 2,
+      "cases": 67,
+      "cycles": 126630,
+      "vectors_sha256": "edb66877f267b89169d93e0b61b6794fd01ea9e5dd42fa7edc55cc0ec61d2ea5",
+      "passed": true
+    }
+  ],
+  "total_cycles": 791566,
+  "source_sha256": {
+    "rtl/tinylpu_device_memory.sv": "d8ba9b8476fa39c75ff73b94a09b3eeb598e1b4115c517bc5073397ae7b78ec2",
+    "rtl/tinylpu_device.sv": "9fb9d085a29c4ee30b046583b4a6332206dbe13689f40644f4ae78160d5bd246",
+    "rtl/tt_um_tinylpu_v1.sv": "7c55235ca496cb702e9afc19aab99af1aaac038c043b1e83a4249a198260ca7c",
+    "rtl/tb_tinylpu_device.sv": "5e9e5a36a3c72ce2528f4b018b815af1a5f2abf690c9d7cf743d7b6db93d4d02",
+    "cpp/tinylpu_device.cpp": "a6a1fa04b0e33bb7da644f6036d08f79b72876f5d4bc5be52e821248442cf0cd",
+    "hpp/tinylpu_device.h": "002ac78cdaca9319a9ac6341fad21dbe2a709f320690d7c3012e4cc3da7d33f5",
+    "scripts/run_device_vectors.py": "f235a93631e2d275d1cb1411b0957567caaea2ad892a6af650db52613c84b861"
+  },
+  "scope": "RTL functional and cycle checks, without physical timing or signoff claims"
+}

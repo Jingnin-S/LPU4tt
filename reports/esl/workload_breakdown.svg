@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="711" viewBox="0 0 1180 711">
+<rect width="100%" height="100%" fill="white"/>
+<g font-family="Arial, sans-serif" fill="#172033">
+<text x="32" y="35" font-size="23" font-weight="bold">Tiny-LPU ESL: cycles per transaction</text>
+<text x="32" y="64" font-size="14">Common core model for SKY / IHP / GF; frequency is assumed, not measured or STA-validated.</text>
+<rect x="32" y="88" width="13" height="13" fill="#7c3aed"/>
+<text x="51" y="99" font-size="13">weight load</text>
+<rect x="208" y="88" width="13" height="13" fill="#0284c7"/>
+<text x="227" y="99" font-size="13">input load</text>
+<rect x="384" y="88" width="13" height="13" fill="#64748b"/>
+<text x="403" y="99" font-size="13">START/setup</text>
+<rect x="560" y="88" width="13" height="13" fill="#16a34a"/>
+<text x="579" y="99" font-size="13">core RUN</text>
+<rect x="736" y="88" width="13" height="13" fill="#d97706"/>
+<text x="755" y="99" font-size="13">readout</text>
+<rect x="912" y="88" width="13" height="13" fill="#dc2626"/>
+<text x="931" y="99" font-size="13">host wait</text>
+<line x1="265.00" y1="136" x2="265.00" y2="583" stroke="#e2e8f0"/>
+<text x="265.00" y="606" text-anchor="middle" font-size="12">0</text>
+<line x1="363.57" y1="136" x2="363.57" y2="583" stroke="#e2e8f0"/>
+<text x="363.57" y="606" text-anchor="middle" font-size="12">5</text>
+<line x1="462.14" y1="136" x2="462.14" y2="583" stroke="#e2e8f0"/>
+<text x="462.14" y="606" text-anchor="middle" font-size="12">10</text>
+<line x1="560.71" y1="136" x2="560.71" y2="583" stroke="#e2e8f0"/>
+<text x="560.71" y="606" text-anchor="middle" font-size="12">15</text>
+<line x1="659.29" y1="136" x2="659.29" y2="583" stroke="#e2e8f0"/>
+<text x="659.29" y="606" text-anchor="middle" font-size="12">20</text>
+<line x1="757.86" y1="136" x2="757.86" y2="583" stroke="#e2e8f0"/>
+<text x="757.86" y="606" text-anchor="middle" font-size="12">25</text>
+<line x1="856.43" y1="136" x2="856.43" y2="583" stroke="#e2e8f0"/>
+<text x="856.43" y="606" text-anchor="middle" font-size="12">30</text>
+<line x1="955.00" y1="136" x2="955.00" y2="583" stroke="#e2e8f0"/>
+<text x="955.00" y="606" text-anchor="middle" font-size="12">35</text>
+<text x="32" y="165" font-size="14">dot4 | reuse=1 | wait=0</text>
+<rect x="265.000" y="145" width="39.429" height="30" fill="#7c3aed"><title>weight_load_cycles: 2.000 cycles/transaction</title></rect>
+<rect x="304.429" y="145" width="39.429" height="30" fill="#0284c7"><title>input_load_cycles: 2.000 cycles/transaction</title></rect>
+<rect x="343.857" y="145" width="19.714" height="30" fill="#64748b"><title>setup_cycles: 1.000 cycles/transaction</title></rect>
+<rect x="363.571" y="145" width="98.571" height="30" fill="#16a34a"><title>compute_cycles: 5.000 cycles/transaction</title></rect>
+<rect x="462.143" y="145" width="39.429" height="30" fill="#d97706"><title>readout_cycles: 2.000 cycles/transaction</title></rect>
+<rect x="501.571" y="145" width="0.000" height="30" fill="#dc2626"><title>host_wait_cycles: 0.000 cycles/transaction</title></rect>
+<text x="510.57" y="165" font-size="13">12.000 cycles</text>
+<text x="265" y="193" font-size="12" fill="#475569">8.333 MMAC/s at assumed 25 MHz; total run: 12 cycles / 1 transactions</text>
+<text x="32" y="241" font-size="14">dot4 | reuse=16 | wait=0</text>
+<rect x="265.000" y="221" width="2.464" height="30" fill="#7c3aed"><title>weight_load_cycles: 0.125 cycles/transaction</title></rect>
+<rect x="267.464" y="221" width="39.429" height="30" fill="#0284c7"><title>input_load_cycles: 2.000 cycles/transaction</title></rect>
+<rect x="306.893" y="221" width="19.714" height="30" fill="#64748b"><title>setup_cycles: 1.000 cycles/transaction</title></rect>
+<rect x="326.607" y="221" width="98.571" height="30" fill="#16a34a"><title>compute_cycles: 5.000 cycles/transaction</title></rect>
+<rect x="425.179" y="221" width="39.429" height="30" fill="#d97706"><title>readout_cycles: 2.000 cycles/transaction</title></rect>
+<rect x="464.607" y="221" width="0.000" height="30" fill="#dc2626"><title>host_wait_cycles: 0.000 cycles/transaction</title></rect>
+<text x="473.61" y="241" font-size="13">10.125 cycles</text>
+<text x="265" y="269" font-size="12" fill="#475569">9.877 MMAC/s at assumed 25 MHz; total run: 162 cycles / 16 transactions</text>
+<text x="32" y="317" font-size="14">dot4 | reuse=16 | wait=16</text>
+<rect x="265.000" y="297" width="2.464" height="30" fill="#7c3aed"><title>weight_load_cycles: 0.125 cycles/transaction</title></rect>
+<rect x="267.464" y="297" width="39.429" height="30" fill="#0284c7"><title>input_load_cycles: 2.000 cycles/transaction</title></rect>
+<rect x="306.893" y="297" width="19.714" height="30" fill="#64748b"><title>setup_cycles: 1.000 cycles/transaction</title></rect>
+<rect x="326.607" y="297" width="98.571" height="30" fill="#16a34a"><title>compute_cycles: 5.000 cycles/transaction</title></rect>
+<rect x="425.179" y="297" width="39.429" height="30" fill="#d97706"><title>readout_cycles: 2.000 cycles/transaction</title></rect>
+<rect x="464.607" y="297" width="315.429" height="30" fill="#dc2626"><title>host_wait_cycles: 16.000 cycles/transaction</title></rect>
+<text x="789.04" y="317" font-size="13">26.125 cycles</text>
+<text x="265" y="345" font-size="12" fill="#475569">3.828 MMAC/s at assumed 25 MHz; total run: 418 cycles / 16 transactions</text>
+<text x="32" y="393" font-size="14">gemv2x4 | reuse=1 | wait=0</text>
+<rect x="265.000" y="373" width="78.857" height="30" fill="#7c3aed"><title>weight_load_cycles: 4.000 cycles/transaction</title></rect>
+<rect x="343.857" y="373" width="39.429" height="30" fill="#0284c7"><title>input_load_cycles: 2.000 cycles/transaction</title></rect>
+<rect x="383.286" y="373" width="19.714" height="30" fill="#64748b"><title>setup_cycles: 1.000 cycles/transaction</title></rect>
+<rect x="403.000" y="373" width="197.143" height="30" fill="#16a34a"><title>compute_cycles: 10.000 cycles/transaction</title></rect>
+<rect x="600.143" y="373" width="78.857" height="30" fill="#d97706"><title>readout_cycles: 4.000 cycles/transaction</title></rect>
+<rect x="679.000" y="373" width="0.000" height="30" fill="#dc2626"><title>host_wait_cycles: 0.000 cycles/transaction</title></rect>
+<text x="688.00" y="393" font-size="13">21.000 cycles</text>
+<text x="265" y="421" font-size="12" fill="#475569">9.524 MMAC/s at assumed 25 MHz; total run: 21 cycles / 1 transactions</text>
+<text x="32" y="469" font-size="14">gemv2x4 | reuse=16 | wait=0</text>
+<rect x="265.000" y="449" width="4.929" height="30" fill="#7c3aed"><title>weight_load_cycles: 0.250 cycles/transaction</title></rect>
+<rect x="269.929" y="449" width="39.429" height="30" fill="#0284c7"><title>input_load_cycles: 2.000 cycles/transaction</title></rect>
+<rect x="309.357" y="449" width="19.714" height="30" fill="#64748b"><title>setup_cycles: 1.000 cycles/transaction</title></rect>
+<rect x="329.071" y="449" width="197.143" height="30" fill="#16a34a"><title>compute_cycles: 10.000 cycles/transaction</title></rect>
+<rect x="526.214" y="449" width="78.857" height="30" fill="#d97706"><title>readout_cycles: 4.000 cycles/transaction</title></rect>
+<rect x="605.071" y="449" width="0.000" height="30" fill="#dc2626"><title>host_wait_cycles: 0.000 cycles/transaction</title></rect>
+<text x="614.07" y="469" font-size="13">17.250 cycles</text>
+<text x="265" y="497" font-size="12" fill="#475569">11.594 MMAC/s at assumed 25 MHz; total run: 276 cycles / 16 transactions</text>
+<text x="32" y="545" font-size="14">gemv2x4 | reuse=16 | wait=16</text>
+<rect x="265.000" y="525" width="4.929" height="30" fill="#7c3aed"><title>weight_load_cycles: 0.250 cycles/transaction</title></rect>
+<rect x="269.929" y="525" width="39.429" height="30" fill="#0284c7"><title>input_load_cycles: 2.000 cycles/transaction</title></rect>
+<rect x="309.357" y="525" width="19.714" height="30" fill="#64748b"><title>setup_cycles: 1.000 cycles/transaction</title></rect>
+<rect x="329.071" y="525" width="197.143" height="30" fill="#16a34a"><title>compute_cycles: 10.000 cycles/transaction</title></rect>
+<rect x="526.214" y="525" width="78.857" height="30" fill="#d97706"><title>readout_cycles: 4.000 cycles/transaction</title></rect>
+<rect x="605.071" y="525" width="315.429" height="30" fill="#dc2626"><title>host_wait_cycles: 16.000 cycles/transaction</title></rect>
+<text x="929.50" y="545" font-size="13">33.250 cycles</text>
+<text x="265" y="573" font-size="12" fill="#475569">6.015 MMAC/s at assumed 25 MHz; total run: 532 cycles / 16 transactions</text>
+<text x="610.0" y="679" text-anchor="middle" font-size="14">clock cycles / transaction (one-time weight load amortized)</text>
+</g></svg>
