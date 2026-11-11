@@ -14,7 +14,8 @@ INT8/FP16/BF16 are not native device capabilities.
 Parameterized RTL supports one/two lanes and capacities 32..256B divisible by
 four. The released regression covers 64/128/256B x one/two lanes.
 Four banks use address modulo four, one synchronous read each and one-cycle
-read latency. There is one global byte write per clock. Per-byte valid bits
+read latency. Each bank accepts one byte write per clock: LOAD writes one bank,
+result writeback up to four. Per-byte valid bits
 reject uninitialized reads; data cells are not reset.
 
 Boundary validation uses full-width arithmetic, including 13-bit W end
@@ -50,23 +51,30 @@ external bridge.
 
 ## Exact no-stall cycle accounting
 
-State order is HEADER -> ENDS -> MVM_VALIDATE (MVM only) -> CHECK, then dispatch.
-LOAD/STORE/END cost header bytes + 2 control clocks; MVM costs header bytes + 3.
+LOAD/STORE/END go HEADER -> CHECK, then dispatch: header bytes + 1 control clock.
+MVM goes HEADER -> ENDS -> MVM_VALIDATE -> group initialization: header bytes + 2.
+The registered MVM verdict faults in the first group initialization, before
+any scratchpad read or write.
 Incomplete headers or literals wait without a speculative timeout.
 
 | Phase | Cost |
 | --- | --- |
 | LOAD literal | 1 clock/byte |
-| STORE | 3 clocks/byte: request, synchronous response, TX handshake |
+| STORE | 2 clocks + 1 clock/byte: request, response, then read-ahead TX handshakes |
 | MVM group initialization | 1 clock |
-| ACCUM seed | 4 bytes/active lane, 2 clocks/byte |
-| MVM core | Sum of K bank-request rounds + 3 drain clocks |
-| Group writeback | 2 or 4 clocks/active lane |
+| ACCUM seed | 1 clock + 1 clock/active lane: one four-bank read per seed |
+| MVM core | Sum of ceil(K/2) byte request rounds + 3 drain clocks |
+| Group writeback | 1 clock/active lane |
 
-At each k, coalesce equal A/W0/W1 addresses, count distinct addresses per bank,
-and take the largest count as request rounds. Priority is A, W0, W1.
-Two packet buffers overlap requests and prior responses; two product registers
-feed ACC32. Conflict-free compute issues once per clock.
+At each operand byte, coalesce equal A/W0/W1 addresses, count distinct addresses
+per bank, and take the largest count as request rounds. Priority is A, W0, W1.
+A byte carries two K elements: both nibble products are registered, summed in
+the next stage and added to ACC32. Odd K ignores the high nibble of the last
+byte. Two packet buffers overlap requests and prior responses. Conflict-free
+compute issues one byte, two K elements, per clock.
+
+A STORE byte that turns out uninitialized faults when the preceding byte is
+accepted; earlier bytes are still delivered. The first byte faults before TX.
 
 The interval from accepted start through DONE is one start clock plus all
 instruction costs above. no_stall_cycles in compiler/tinylpu_compiler/device.py
@@ -81,18 +89,21 @@ arithmetic, then generates complete C++ pin traces. RTL checks all output pins
 and direction. Independent arithmetic includes all 256 INT4 product pairs,
 positive/negative accumulator wrap and saturation extremes.
 
-The current source regression contains 402 records and 791566 cycles across
+The current source regression contains 420 records and 581742 cycles across
 six profiles, with Icarus simulation and zero-warning strict Verilator lint.
 Cases cover native K64, multi-group execution, K512/1024 tiling, odd K, tails,
 packed/bank4 storage, conflicts, broadcasts, full-capacity transfer, invalid
 headers/addresses/aliasing/uninitialized reads, reset/enable/start interruptions,
-backpressure and restart after DONE.
+backpressure, restart after DONE, dirty odd-K high nibbles and uninitialized
+STORE tails and seeds.
 
 The core SHA256 is
-9fb9d085a29c4ee30b046583b4a6332206dbe13689f40644f4ae78160d5bd246.
-Earlier 390/396-record results correspond to historical candidates.
+4431b57dc7c0fad1ff2e8ff72d91233a7a50d550c0c3a404c6b12009941ba809.
+Earlier 390/396/402-record results correspond to historical candidates,
+including the qualified v0.2.1 core 9fb9d085...d246.
 The public pin-only cocotb test is independently arithmetic-driven.
-Qualified routed gates additionally pass 67 records/137327 cycles and TT precheck.
+The v0.2.1 routed gates passed 67 records/137327 cycles and TT precheck; the
+current RTL has no gate-level or physical result yet.
 See [reference evidence](../reports/README.md) and
 [physical results](tt_signoff_results.md).
 

@@ -14,12 +14,12 @@ scales, nonlinear functions, attention/KV state and sampling stay on the host.
 | Compute | One MAC lane | Two-lane model/RTL; wider resource studies |
 | Scratchpad | 64 bytes, four byte-interleaved banks | 128B dual-lane; 192B longer-K candidate; 256B comparison |
 | Reads | One synchronous read per bank, one-cycle response | Explicit flat-port resource comparisons |
-| Writes | One global byte per clock | Serialized LOAD and result writeback |
+| Writes | One byte per bank per clock | LOAD writes one bank; result writeback writes one lane per clock |
 | Control | Sequential LOAD/STORE/MVM/END | No instruction RAM, asynchronous DMA or descriptor cache |
 | Clock | One synchronous clock | No internal PLL or CDC bridge |
 
-Only the 64B/one-lane SKY130A macro has the physical qualification recorded in
-this release. Parameterized model/RTL support is a separate claim.
+Only the v0.2.1 64B/one-lane SKY130A macro has a recorded physical qualification;
+the current RTL has changed since and has not been through the physical flow. Parameterized model/RTL support is a separate claim.
 
 ## Data and control paths
 
@@ -28,15 +28,16 @@ and checking precede dispatch. A four-bank scratchpad stores data and one valid
 bit per byte; data cells do not require reset.
 
 For each K element, the gather arbiter requests A and each active lane's weight.
-Identical addresses broadcast once. Different addresses in the same bank are
-serialized in A, W0, W1 priority. A is shared across lanes, while each lane owns
-an INT32 feedback accumulator. Explicit product/valid staging permits one issue
-per clock in a conflict-free group; bank conflicts reduce that rate.
+Each fetched byte supplies two K elements: both nibble products are formed and
+summed before accumulation. Identical addresses broadcast once. Different
+addresses in the same bank are serialized in A, W0, W1 priority. A is shared across lanes, while each lane owns
+an INT32 feedback accumulator. Explicit product/valid staging permits one byte
+issue (two K elements) per clock in a conflict-free group; bank conflicts reduce that rate.
 
-ACCUM reads raw32 seeds from scratchpad before a row group starts. Intermediate
+ACCUM reads each raw32 seed with one four-bank read before a row group starts. Intermediate
 K tiles retain raw32. Final SAT16 is explicit and affects only output storage.
-Writeback uses the global 1B/clock port. STORE performs synchronous reads and
-holds TX valid/data during backpressure.
+Writeback stores one lane per clock across the banks. STORE reads ahead of the
+registered TX byte and holds TX valid/data during backpressure.
 
 ## Compiler decisions
 

@@ -63,20 +63,20 @@ def no_stall_cycles(plan,lanes):
     for command in plan['commands']:
         op=command['op']
         phases['header']+=8 if op=='MVM' else 4
-        phases['check']+=2
+        phases['check']+=1
         if op=='LOAD':phases['load']+=command['count']
-        elif op=='STORE':phases['store']+=3*command['count']
+        elif op=='STORE':phases['store']+=command['count']+2
         elif op=='MVM':
             phases['mvm_validate']+=1
             for row in range(0,command['rows'],lanes):
                 active=min(lanes,command['rows']-row)
                 phases['group_init']+=1
-                if command['accumulate']:phases['seed']+=8*active
+                if command['accumulate']:phases['seed']+=1+active
                 phases['core_drain']+=3
-                phases['writeback']+=active*(2 if command['sat16'] else 4)
-                for k in range(command['k']):
-                    addresses={command['a']+k//2}
-                    addresses.update(command['w']+(row+i)*command['stride']+k//2
+                phases['writeback']+=active
+                for byte in range((command['k']+1)//2):
+                    addresses={command['a']+byte}
+                    addresses.update(command['w']+(row+i)*command['stride']+byte
                                      for i in range(active))
                     requests=[sum(a%4==bank for a in addresses) for bank in range(4)]
                     phases['core_issue']+=max(requests)

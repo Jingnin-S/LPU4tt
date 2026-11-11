@@ -23,7 +23,7 @@ module tb_tinylpu_device;
                 rst_n=inputs[11];ena=inputs[12];
                 @(posedge clk);#1;
                 if({uio_oe,uio_out,uo_out}!==expected)begin
-                    $display("Mismatch cycle=%0d inputs=%h actual=%h expected=%h state=%0d k=%0d issued=%h",cycle,inputs,{uio_oe,uio_out,uo_out},expected,dut.u_device.state,dut.u_device.req_k,dut.u_device.issued);
+                    $display("Mismatch cycle=%0d inputs=%h actual=%h expected=%h state=%0d byte=%0d issued=%h",cycle,inputs,{uio_oe,uio_out,uo_out},expected,dut.u_device.state,dut.u_device.req_byte,dut.u_device.issued);
                     $fatal(1,"Device cycle mismatch");
                 end
                 cycle=cycle+1;

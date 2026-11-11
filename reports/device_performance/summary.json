@@ -5,8 +5,8 @@
   "assumptions": "No external stalls; all compiler/ISA integer results and analytical full-device cycle counts checked",
   "physical_fmax_validated": false,
   "source_sha256": {
-    "cpp/tinylpu_device.cpp": "a6a1fa04b0e33bb7da644f6036d08f79b72876f5d4bc5be52e821248442cf0cd",
-    "compiler/tinylpu_compiler/device.py": "839ca751de35817c4c5589f1de9be793cabceff1d8ef3f99859351e15cdef89b",
+    "cpp/tinylpu_device.cpp": "0b706685e125528d06a46ca65250196d36220d1d04c556e9b52334b7d61d251f",
+    "compiler/tinylpu_compiler/device.py": "e50e5f6836a75fb19f94c49a6546b95445ea149a70b0913496d16661e721dbda",
     "scripts/run_device_performance.py": "a09874c31bebcbefb695b33a635705106552722b72ac8dbe2dd496509a0f6a3f"
   },
   "note": "Compare cycles within identical m/k/frames. Runtime wall time is simulation, not hardware latency."

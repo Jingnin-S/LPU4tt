@@ -1,5 +1,10 @@
 # SKY130A macro qualification results
 
+> The RTL on this branch is newer than the qualified macro. The device cycle
+> optimizations (see CHANGELOG, Unreleased) change `tinylpu_device.sv` and
+> `tinylpu_device_memory.sv`, so the hashes, timing, area and gate-vector results
+> below describe the v0.2.1 sources only. The physical flow has not been rerun.
+
 Recorded on 2026-11-04. The independent strict collector reports passed=true
 and failures=[], with exit status zero, for the specific validate64_eco15
 macro. All builds, simulations and physical checks ran on the server.
@@ -69,7 +74,7 @@ mapped netlist, PDK or full physical work directory:
 [source hashes](../reports/reference/source_hashes.json).
 Tool/cache locks are in physical/repro.
 
-Current RTL matches the C++ model over 402 records/791566 cycles, with strict
+The qualified v0.2.1 RTL matched the C++ model over 402 records/791566 cycles, with strict
 lint and independent arithmetic testing. SGLang integration is a CPU Linear
 adapter into DeviceRuntime, not SRT service or a physical driver.
 The qualified one-lane M8/K64/batch8 model takes 10887 clocks: 108.87us at a
