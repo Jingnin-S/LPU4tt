@@ -115,8 +115,19 @@ async def device_programs(dut):
         wire += bytes([3, 1 | (int(sat) << 1), 0, 4, 8, 0, 0, 1]) + store(8, size) + END
         await host.run(wire, result.to_bytes(size, 'little', signed=True))
     await host.run(END, reset=False)
+    # Odd K: the unused high nibbles of the last A/W bytes must not contribute.
+    wire = load(0, bytes([0x21, 0x73])) + load(4, bytes([0x11, 0x71]))
+    wire += bytes([3, 0, 0, 4, 8, 0, 2, 2]) + store(8, 4) + END
+    await host.run(wire, (6).to_bytes(4, 'little'))
+    # Two rows through seeds, SAT16 writeback and a multi-byte STORE.
+    wire = load(0, bytes([0x77]*2)) + load(4, bytes([0x77]*2)) + load(8, bytes([0x88]*2))
+    wire += load(16, (32700).to_bytes(4, 'little') + (-32700).to_bytes(4, 'little', signed=True))
+    wire += bytes([3, 3, 0, 4, 16, 1, 3, 4]) + store(16, 4) + END
+    await host.run(wire, (32767).to_bytes(2, 'little') + (-32768).to_bytes(2, 'little', signed=True))
     # A new start invalidates old scratch; invalid headers and uninitialized reads fault.
-    for wire in (store(0, 1), bytes([3, 0, 0, 255, 32, 15, 63, 255]), bytes([99, 0, 0, 0])):
+    # The last case faults on the second, uninitialized byte of a STORE.
+    for wire in (store(0, 1), bytes([3, 0, 0, 255, 32, 15, 63, 255]), bytes([99, 0, 0, 0]),
+                 load(0, bytes([1])) + store(0, 2)):
         await host.run(wire, error=True)
     # Busy start abort and ena recovery, tested through the external pins only.
     await host.reset()

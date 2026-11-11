@@ -81,7 +81,9 @@ clock constraint. Recorded nine-corner post-route setup/hold slacks are positive
 cap/slew, DRC/LVS and antenna checks pass, as do gate vectors and TT precheck.
 The retained max-fanout diagnostics are reported separately.
 [Qualification details](docs/tt_signoff_results.md) bind these claims to
-specific RTL and artifact hashes. This is not silicon measurement, board
+specific RTL and artifact hashes: the v0.2.1 sources. The current RTL adds
+device cycle optimizations (see [changelog](CHANGELOG.md)) and has not been
+through the physical flow. This is not silicon measurement, board
 frequency qualification, whole-chip power signoff or shuttle acceptance.
 The current design has one external clock and no PLL/CDC.
 

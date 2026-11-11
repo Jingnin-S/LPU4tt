@@ -1,4 +1,6 @@
 // MIT. Byte-stream INT4/ACC32 controller and datapath.
+// Each fetched byte feeds both nibbles to the MAC; seeds and results use the
+// four banks in parallel; STORE reads ahead of the TX handshake.
 module tinylpu_device #(parameter integer CAPACITY=128,parameter integer LANES=2)(
     input wire clk,rst_n,ena,
     input wire[7:0] rx_data,input wire rx_valid,tx_ready,start,
@@ -28,18 +30,19 @@ module tinylpu_device #(parameter integer CAPACITY=128,parameter integer LANES=2
     reg[4:0] group_row;
     reg[1:0] active_count;
     reg seed_lane;
-    reg[1:0] seed_byte;
-    reg[5:0] req_k;
+    reg[4:0] req_byte;
     reg[2:0] issued;
     reg fetch_done;
     reg[12:0] a_end,w_end,y_read_end,y_write_end;
     reg[31:0] acc0,acc1;
-    reg signed[7:0] product00,product01,product10,product11;
+    // Stage 0: low/high nibble products per lane. Stage 1: their 9-bit sum.
+    reg signed[7:0] product_lo0,product_hi0,product_lo1,product_hi1;
+    reg signed[8:0] pair0,pair1;
     reg pvalid0,pvalid1,plast0,plast1;
     reg[7:0] operands[0:1][0:2];
     reg[2:0] operand_mask[0:1];
     reg[11:0] response_roles;
-    reg response_slot,response_parity,response_last;
+    reg response_slot,response_last;
     wire start_edge=start && !previous_start;
     wire selected=ena && rst_n;
     wire rx_ready=selected && !start_edge && (state[I_HEADER] || state[I_LOAD]);
@@ -54,7 +57,6 @@ module tinylpu_device #(parameter integer CAPACITY=128,parameter integer LANES=2
     wire[7:0] hy=header[39:32],hm=header[47:40],hk=header[55:48],stride=header[63:56];
     wire[4:0] rows={1'b0,hm[3:0]}+5'd1;
     wire[6:0] row_bytes=({1'b0,hk[5:0]}+7'd2)>>1;
-    wire[2:0] output_bytes=wb_narrow?3'd2:3'd4;
     wire[2:0] needed=active_count==2?3'b111:3'b011;
     wire[12:0] y_end=y_read_end>y_write_end?y_read_end:y_write_end;
     wire[12:0] transfer_end={5'b0,ha}+{5'b0,hw}+13'd1;
@@ -62,25 +64,35 @@ module tinylpu_device #(parameter integer CAPACITY=128,parameter integer LANES=2
     wire aliases=( {5'b0,hy}<a_end && {5'b0,ha}<y_end ) ||
                  ( {5'b0,hy}<w_end && {5'b0,hw}<y_end );
     // Full end-address checks precede access; these are validated byte pointers.
+    // STORE reads one byte ahead of the TX register and a second byte ahead
+    // while TX is pending. Consecutive bytes always sit in different banks.
     wire[7:0] store_address=transfer_pointer;
-    wire[7:0] seed_address=seed_pointer;
+    wire[7:0] store_next=transfer_pointer+8'd1;
+    wire[7:0] store_ahead=transfer_pointer+8'd2;
+    wire store_has_next=byte_index!=hw;
+    wire store_has_ahead={1'b0,byte_index}+9'd2<={1'b0,hw};
+    // ACCUM requires a 4B-aligned Y, so one seed occupies all four banks.
+    wire seed_more={1'b0,seed_lane}+2'd1!=active_count;
+    wire[5:0] seed_word=state[I_SEED_RESP]?seed_pointer[7:2]+6'd1:seed_pointer[7:2];
     reg bad_header;
     wire bad_mvm_header=flags[7:2]!=0 || hm[7:4]!=0 || hk[7:6]!=0 ||
         {1'b0,stride}<{2'b0,row_bytes} || a_end>13'(CAPACITY) || w_end>13'(CAPACITY) ||
         y_end>13'(CAPACITY) || aliases || (flags[1]?hy[0]!=0:hy[1:0]!=0) ||
         (flags[0] && hy[1:0]!=0);
     reg bad_read;
-    wire fault=(state[I_CHECK] && bad_header)||bad_read;
+    wire fault=(state[I_CHECK] && bad_header)||(state[I_INIT] && mvm_bad_latched)||bad_read;
     reg[3:0] read_enable;
     reg[31:0] read_address;
     wire[31:0] read_data;
     wire[3:0] read_valid;
-    reg write_enable;
-    reg[7:0] write_address,write_data;
+    reg[3:0] write_enable;
+    reg[5:0] write_word;
+    reg[31:0] write_data;
     reg[11:0] request_roles;
-    wire request_slot=req_k[0];
-    wire request_parity=req_k[0];
-    wire request_last=req_k==hk[5:0];
+    wire request_slot=req_byte[0];
+    wire request_last=req_byte==hk[5:1];
+    // Odd K ignores the high nibble of the last byte.
+    wire drop_high=response_last && !hk[0];
     reg[2:0] issued_next;
     reg[2:0] core_grant;
     reg[7:0] role_address[0:2];
@@ -88,7 +100,6 @@ module tinylpu_device #(parameter integer CAPACITY=128,parameter integer LANES=2
     reg[7:0] merged[0:2];
     reg[2:0] merged_mask;
     reg[31:0] wb_value;
-    reg[1:0] wb_part;
 
     function automatic signed[3:0] nibble(input[7:0] value,input parity);
         begin nibble=parity?value[7:4]:value[3:0];end
@@ -107,12 +118,11 @@ module tinylpu_device #(parameter integer CAPACITY=128,parameter integer LANES=2
         case(op)
           8'd1,8'd2:bad_header=flags!=0 || transfer_end>13'(CAPACITY);
           8'd15:bad_header=flags!=0 || ha!=0 || hw!=0;
-          8'd3:bad_header=mvm_bad_latched;
           default:bad_header=1'b1;
         endcase
         bad_read=1'b0;
         if(state[I_STORE_RESP])bad_read=!read_valid[store_address[1:0]];
-        if(state[I_SEED_RESP])bad_read=!read_valid[seed_address[1:0]];
+        if(state[I_SEED_RESP])bad_read=!(&read_valid);
         if(state[I_CORE])for(integer b=0;b<4;b=b+1)
             if(response_roles[b*3+:3]!=0 && !read_valid[b])bad_read=1'b1;
     end
@@ -133,8 +143,17 @@ module tinylpu_device #(parameter integer CAPACITY=128,parameter integer LANES=2
               state[I_STORE_REQ]:if(store_address[1:0]==2'(b))begin
                   read_enable[b]=1;read_address[b*8+:8]=store_address;
               end
-              state[I_SEED_REQ]:if(seed_address[1:0]==2'(b))begin
-                  read_enable[b]=1;read_address[b*8+:8]=seed_address;
+              state[I_STORE_RESP]:if(store_has_next && store_next[1:0]==2'(b))begin
+                  read_enable[b]=1;read_address[b*8+:8]=store_next;
+              end
+              state[I_TX]:if(store_has_ahead && store_ahead[1:0]==2'(b))begin
+                  read_enable[b]=1;read_address[b*8+:8]=store_ahead;
+              end
+              state[I_SEED_REQ]:begin
+                  read_enable[b]=1;read_address[b*8+:8]={seed_word,2'(b)};
+              end
+              state[I_SEED_RESP]:if(seed_more)begin
+                  read_enable[b]=1;read_address[b*8+:8]={seed_word,2'(b)};
               end
               state[I_CORE]:if(!fetch_done)begin
                   for(integer r=0;r<3;r=r+1)
@@ -162,23 +181,29 @@ module tinylpu_device #(parameter integer CAPACITY=128,parameter integer LANES=2
             end
     end
     always @*begin
-        write_enable=0;write_address=0;write_data=0;
-        wb_part=wb_narrow?{1'b0,byte_index[0]}:byte_index[1:0];
-        wb_value=saturated((wb_narrow?byte_index[1]:byte_index[2])?acc1:acc0,wb_narrow);
+        write_enable=0;write_word=0;write_data=0;
+        // Writeback stores one lane per clock: raw32 fills all four banks,
+        // SAT16 the two banks of its 2B-aligned half word. byte_index is the lane.
+        wb_value=saturated(byte_index[0]?acc1:acc0,wb_narrow);
         if(state[I_LOAD] && rx_valid)begin
-            write_enable=1'b1;write_address=transfer_pointer;write_data=rx_data;
+            write_enable[transfer_pointer[1:0]]=1'b1;
+            write_word=transfer_pointer[7:2];write_data={4{rx_data}};
         end
         if(state[I_WB])begin
-            write_enable=1'b1;
-            write_address=wb_pointer;
-            write_data=wb_value[wb_part*8+:8];
+            write_word=wb_pointer[7:2];
+            if(wb_narrow)begin
+                write_enable=wb_pointer[1]?4'b1100:4'b0011;
+                write_data={2{wb_value[15:0]}};
+            end else begin
+                write_enable=4'b1111;write_data=wb_value;
+            end
         end
-        // Fault states cannot write: LOAD/WB are disjoint from CHECK/read responses.
-        if(!selected || start_edge)write_enable=1'b0;
+        // Fault states cannot write: LOAD/WB are disjoint from CHECK/INIT/read responses.
+        if(!selected || start_edge)write_enable=4'b0;
     end
 
     tinylpu_device_memory #(.CAPACITY(CAPACITY)) memory(
-        .clk(clk),.clear_valid(clear_valid),.wr_en(write_enable),.wr_addr(write_address),.wr_data(write_data),
+        .clk(clk),.clear_valid(clear_valid),.wr_en(write_enable),.wr_word(write_word),.wr_data(write_data),
         .rd_en(read_enable),.rd_addr(read_address),.rd_data(read_data),.rd_valid(read_valid));
 
     always @(posedge clk)begin
@@ -186,23 +211,23 @@ module tinylpu_device #(parameter integer CAPACITY=128,parameter integer LANES=2
             state<=IDLE;previous_start<=0;header<=0;header_index<=0;byte_index<=0;tx_byte<=0;
             mvm_bad_latched<=0;
             transfer_pointer<=0;seed_pointer<=0;wb_pointer<=0;wb_narrow<=0;
-            group_row<=0;w_group<=0;active_count<=0;seed_lane<=0;seed_byte<=0;
-            req_k<=0;issued<=0;fetch_done<=0;
+            group_row<=0;w_group<=0;active_count<=0;seed_lane<=0;
+            req_byte<=0;issued<=0;fetch_done<=0;
             core_a<=0;core_w0<=0;core_w1<=0;
             same_bank_aw0<=0;same_bank_aw1<=0;same_bank_w01<=0;
             same_byte_aw0<=0;same_byte_aw1<=0;
             a_end<=0;w_end<=0;y_read_end<=0;y_write_end<=0;
             acc0<=0;acc1<=0;pvalid0<=0;pvalid1<=0;plast0<=0;plast1<=0;
-            product00<=0;product01<=0;product10<=0;product11<=0;
-            response_roles<=0;response_slot<=0;response_parity<=0;response_last<=0;
+            product_lo0<=0;product_hi0<=0;product_lo1<=0;product_hi1<=0;pair0<=0;pair1<=0;
+            response_roles<=0;response_slot<=0;response_last<=0;
             operand_mask[0]<=0;operand_mask[1]<=0;
             for(integer s=0;s<2;s=s+1)for(integer r=0;r<3;r=r+1)operands[s][r]<=0;
         end else if(start_edge)begin
             previous_start<=1;response_roles<=0;pvalid0<=0;pvalid1<=0;
             if(state[I_IDLE] || state[I_DONE])begin
                 state<=HEADER;header<=0;header_index<=0;byte_index<=0;tx_byte<=0;
-                group_row<=0;w_group<=0;active_count<=0;seed_lane<=0;seed_byte<=0;
-                req_k<=0;issued<=0;fetch_done<=0;acc0<=0;acc1<=0;
+                group_row<=0;w_group<=0;active_count<=0;seed_lane<=0;
+                req_byte<=0;issued<=0;fetch_done<=0;acc0<=0;acc1<=0;
                 operand_mask[0]<=0;operand_mask[1]<=0;
             end else state<=ERROR;
         end else if(fault)begin
@@ -210,12 +235,13 @@ module tinylpu_device #(parameter integer CAPACITY=128,parameter integer LANES=2
         end else begin
             previous_start<=start;
             response_roles<=request_roles;response_slot<=request_slot;
-            response_parity<=request_parity;response_last<=request_last;
+            response_last<=request_last;
             unique case(1'b1)
               state[I_HEADER]:if(rx_valid)begin
                   if(header_index==0)header<={56'b0,rx_data};
                   else header[header_index*8+:8]<=rx_data;
-                  if(header_index==(op==3?3'd7:3'd3))begin state<=ENDS;header_index<=0;end
+                  // Only MVM needs the registered end addresses.
+                  if(header_index==(op==3?3'd7:3'd3))begin state<=op==3?ENDS:CHECK;header_index<=0;end
                   else header_index<=header_index+1'b1;
               end
               state[I_ENDS]:begin
@@ -223,18 +249,18 @@ module tinylpu_device #(parameter integer CAPACITY=128,parameter integer LANES=2
                   w_end<={5'b0,hw}+({9'b0,hm[3:0]}*{5'b0,stride})+{6'b0,row_bytes};
                   y_read_end<={5'b0,hy}+(flags[0]?({8'b0,rows}<<2):13'b0);
                   y_write_end<={5'b0,hy}+(flags[1]?({8'b0,rows}<<1):({8'b0,rows}<<2));
-                  state<=op==3?MVM_VALIDATE:CHECK;
+                  state<=MVM_VALIDATE;
               end
+              // The registered verdict faults in INIT, before any read or write.
               state[I_MVM_VALIDATE]:begin
                   mvm_bad_latched<=bad_mvm_header;
-                  state<=CHECK;
+                  byte_index<=0;group_row<=0;w_group<=hw;state<=INIT;
               end
               state[I_CHECK]:begin
                   byte_index<=0;transfer_pointer<=ha;
                   case(op)
                     1:state<=LOAD;
                     2:state<=STORE_REQ;
-                    3:begin group_row<=0;w_group<=hw;state<=INIT;end
                     15:state<=DONE;
                     default:state<=ERROR;
                   endcase
@@ -247,7 +273,11 @@ module tinylpu_device #(parameter integer CAPACITY=128,parameter integer LANES=2
               state[I_STORE_RESP]:begin tx_byte<=read_data[store_address[1:0]*8+:8];state<=TX;end
               state[I_TX]:if(tx_ready)begin
                   if(byte_index==hw)begin state<=HEADER;header_index<=0;end
-                  else begin byte_index<=byte_index+1'b1;transfer_pointer<=transfer_pointer+1'b1;state<=STORE_REQ;end
+                  else if(!read_valid[store_next[1:0]])state<=ERROR;
+                  else begin
+                      tx_byte<=read_data[store_next[1:0]*8+:8];
+                      byte_index<=byte_index+1'b1;transfer_pointer<=store_next;
+                  end
               end
               state[I_INIT]:begin
                   active_count<=(LANES==2 && rows-group_row>1)?2'd2:2'd1;
@@ -262,25 +292,24 @@ module tinylpu_device #(parameter integer CAPACITY=128,parameter integer LANES=2
                   same_bank_w01<=stride[1:0]==0;
                   same_byte_aw0<=ha==w_group;same_byte_aw1<=ha==init_w1;
                   acc0<=0;acc1<=0;pvalid0<=0;pvalid1<=0;operand_mask[0]<=0;operand_mask[1]<=0;
-                  req_k<=0;issued<=0;seed_lane<=0;seed_byte<=0;fetch_done<=0;
+                  req_byte<=0;issued<=0;seed_lane<=0;fetch_done<=0;byte_index<=0;
                   for(integer s=0;s<2;s=s+1)for(integer r=0;r<3;r=r+1)operands[s][r]<=0;
                   state<=flags[0]?SEED_REQ:CORE;
               end
               state[I_SEED_REQ]:state<=SEED_RESP;
+              // Bank b returns seed byte b. The next lane's request overlaps.
               state[I_SEED_RESP]:begin
-                  if(seed_lane)acc1[seed_byte*8+:8]<=read_data[seed_address[1:0]*8+:8];
-                  else acc0[seed_byte*8+:8]<=read_data[seed_address[1:0]*8+:8];
-                  if(seed_byte==3)begin
-                      seed_byte<=0;
-                      if({1'b0,seed_lane}+2'd1==active_count)state<=CORE;
-                      else begin seed_lane<=1;seed_pointer<=seed_pointer+1'b1;state<=SEED_REQ;end
-                  end else begin seed_byte<=seed_byte+1'b1;seed_pointer<=seed_pointer+1'b1;state<=SEED_REQ;end
+                  if(seed_lane)acc1<=read_data;else acc0<=read_data;
+                  if(seed_more)begin seed_lane<=1;seed_pointer<=seed_pointer+8'd4;end
+                  else state<=CORE;
               end
               state[I_CORE]:begin
-                  pvalid1<=pvalid0;plast1<=plast0;product10<=product00;product11<=product01;pvalid0<=0;
+                  pvalid1<=pvalid0;plast1<=plast0;pvalid0<=0;
+                  pair0<={product_lo0[7],product_lo0}+{product_hi0[7],product_hi0};
+                  pair1<={product_lo1[7],product_lo1}+{product_hi1[7],product_hi1};
                   if(pvalid1)begin
-                      acc0<=acc0+{{24{product10[7]}},product10};
-                      if(active_count==2)acc1<=acc1+{{24{product11[7]}},product11};
+                      acc0<=acc0+{{23{pair0[8]}},pair0};
+                      if(active_count==2)acc1<=acc1+{{23{pair1[8]}},pair1};
                       if(plast1)begin state<=WB;byte_index<=0;end
                   end
                   if(|response_roles)begin
@@ -288,29 +317,31 @@ module tinylpu_device #(parameter integer CAPACITY=128,parameter integer LANES=2
                       operand_mask[response_slot]<=merged_mask;
                       if((merged_mask&needed)==needed)begin
                           pvalid0<=1;plast0<=response_last;
-                          product00<=nibble(merged[0],response_parity)*nibble(merged[1],response_parity);
-                          product01<=active_count==2?nibble(merged[0],response_parity)*nibble(merged[2],response_parity):8'sd0;
+                          product_lo0<=nibble(merged[0],1'b0)*nibble(merged[1],1'b0);
+                          product_hi0<=drop_high?8'sd0:nibble(merged[0],1'b1)*nibble(merged[1],1'b1);
+                          product_lo1<=active_count==2?nibble(merged[0],1'b0)*nibble(merged[2],1'b0):8'sd0;
+                          product_hi1<=active_count==2 && !drop_high?nibble(merged[0],1'b1)*nibble(merged[2],1'b1):8'sd0;
                       end
                   end
                   if(!fetch_done)begin
                       if(issued==0)operand_mask[request_slot]<=0;
                       if(issued_next==needed)begin
                           issued<=0;
-                          if(req_k==hk[5:0])fetch_done<=1;
+                          if(request_last)fetch_done<=1;
                           else begin
-                              req_k<=req_k+1'b1;
-                              if(req_k[0])begin
-                                  core_a<=core_a+1'b1;core_w0<=core_w0+1'b1;core_w1<=core_w1+1'b1;
-                              end
+                              req_byte<=req_byte+1'b1;
+                              core_a<=core_a+1'b1;core_w0<=core_w0+1'b1;core_w1<=core_w1+1'b1;
                           end
                       end else issued<=issued_next;
                   end
               end
               state[I_WB]:begin
-                  if({1'b0,byte_index}+9'd1==active_count*output_bytes)begin
+                  if({1'b0,byte_index[0]}+2'd1==active_count)begin
                       if(group_row+{3'b0,active_count}==rows)begin state<=HEADER;header_index<=0;end
                       else begin group_row<=group_row+5'(LANES);w_group<=w_group+8'(LANES)*stride;state<=INIT;end
-                  end else begin byte_index<=byte_index+1'b1;wb_pointer<=wb_pointer+1'b1;end
+                  end else begin
+                      byte_index<=byte_index+1'b1;wb_pointer<=wb_pointer+(wb_narrow?8'd2:8'd4);
+                  end
               end
               default:begin end
             endcase

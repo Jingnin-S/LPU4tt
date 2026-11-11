@@ -108,6 +108,10 @@ def main():
                         transfer('STORE',24,8),end],bytes([0x88]*24),(1024).to_bytes(4,'little')*2)
         direct('a_alias_second_lane',[transfer('LOAD',0,16),mvm(8,0,16,2,16,8),
                transfer('STORE',16,8),end],bytes([0x88]*16),(1024).to_bytes(4,'little')*2)
+        # Odd K ignores the unused high nibble of the last A/W byte.
+        direct('odd_k_dirty_high_nibble',[transfer('LOAD',0,2),transfer('LOAD',4,2),
+               mvm(0,4,8,1,3,2),transfer('STORE',8,4),end],bytes([0x21,0x73,0x11,0x71]),
+               (6).to_bytes(4,'little'))
         payload=bytes(rng.randrange(256) for _ in range(args.capacity))
         direct('full_capacity_transfer',[transfer('LOAD',0,args.capacity),
                transfer('STORE',0,args.capacity),end],payload,payload)
@@ -133,6 +137,8 @@ def main():
         # Strict header/validity/range faults; W-end arithmetic must not wrap.
         bad=[('opcode',bytes([99,0,0,0])),('reserved_end',bytes([15,1,0,0])),
              ('uninitialized',bytes([2,0,0,0,15,0,0,0])),
+             ('uninitialized_tail',bytes([1,0,0,0,1,2,0,0,1,15,0,0,0])),
+             ('uninitialized_seed',bytes([1,0,0,0,1,1,0,4,0,1,1,0,8,2,1,1,1,3,1,0,4,8,0,0,1])),
              ('oversized_load',bytes([1,0,127,255])),
              ('int8_disabled',bytes([3,4,0,8,32,0,0,1])),
              ('wrapped_w_end',bytes([3,0,0,255,32,15,63,255])),

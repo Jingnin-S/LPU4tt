@@ -22,8 +22,10 @@ from the complete-device FSM contract.
 
 ## RTL and physical evidence
 
-The unchanged v0.2.0 qualified sources retain six-profile RTL results:
-402 records, 791566 cycles, Icarus simulation and zero-warning Verilator lint.
+The current RTL (device cycle optimizations, see CHANGELOG) passes six profiles:
+420 records, 581742 cycles, Icarus simulation and zero-warning Verilator lint,
+plus the pin-only cocotb test. The physical evidence below belongs to the
+v0.2.1 sources (402 records, 791566 cycles) and has not been regenerated.
 Independent pin-only cocotb and complete routed gate vectors are separately
 recorded. The 64B/one-lane SKY130A macro has positive setup/hold in nine corners,
 zero cap/slew and DRC/LVS/antenna errors, and 15/15 TT precheck.

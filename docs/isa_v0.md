@@ -125,7 +125,7 @@ It is a controlled ISA trade-off model with idealized ports.
 
 The implemented device separately models every header byte, boundary/check
 stage, synchronous memory response, bank conflict, drain, writeback and handshake.
-LOAD/STORE/END use header+2 control cycles; MVM uses header+3.
+LOAD/STORE/END use header+1 control cycles; MVM uses header+2.
 Use no_stall_cycles and C++ device ticks for implementation-aligned timing.
 External stalls and host work must be added explicitly.
 
